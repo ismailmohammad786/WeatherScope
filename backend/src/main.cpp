@@ -181,6 +181,18 @@ int main()
     .hero{padding:30px;display:flex;align-items:center;justify-content:space-between;gap:15px}.place{color:#b8c4df;font-size:14px}.temperature{font-size:clamp(60px,13vw,100px);font-weight:650;letter-spacing:-.07em;line-height:1;margin:10px 0}.condition{font-size:19px;color:#e4ecff}.weather-icon{font-size:72px;filter:drop-shadow(0 10px 18px #0004)}
     .details{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #334365}.detail{padding:20px 22px;border-right:1px solid #334365}.detail:last-child{border-right:0}.detail-name{font-size:12px;color:#9aabce}.detail-value{margin-top:8px;font-size:20px;font-weight:650}
     .forecast{margin-top:22px;padding:22px;border:1px solid #334365;border-radius:20px;background:#121d37}.forecast h2{margin:0 0 17px;font-size:20px}.forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px}.day-card{padding:13px 8px;text-align:center;border:1px solid #2b3b5c;border-radius:14px;background:#0f1930}.day-name{font-size:13px;color:#b8c4df}.day-icon{font-size:26px;margin:8px 0}.day-temp{font-size:14px;font-weight:650;white-space:nowrap}.day-rain{font-size:11px;color:#9aabce;margin-top:7px}
+    .visualizer{margin-top:22px;padding:20px;border:1px solid #334365;border-radius:22px;background:#121d37;overflow:hidden}.visualizer-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.visualizer h2{font-size:20px;margin:3px 0}.viz-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#91a8d6}.viz-wind{font-size:13px;color:#b8c4df}
+    .weather-scene{height:270px;position:relative;overflow:hidden;border-radius:17px;perspective:900px;background:linear-gradient(160deg,#63b9f3,#d6efff 76%);transition:background 1s ease}.weather-scene[data-weather="cloudy"]{background:linear-gradient(160deg,#7594b4,#d5e0eb 78%)}.weather-scene[data-weather="fog"]{background:linear-gradient(160deg,#8295a6,#d6e0e4 78%)}.weather-scene[data-weather="rain"]{background:linear-gradient(160deg,#385776,#9caebd 85%)}.weather-scene[data-weather="snow"]{background:linear-gradient(160deg,#6a8baa,#e7f3fb 85%)}.weather-scene[data-weather="storm"]{background:linear-gradient(160deg,#151b31,#505b78 82%)}.weather-scene[data-time="night"]{background:linear-gradient(160deg,#111936,#30466d 82%)}
+    .scene-stars{position:absolute;inset:0;opacity:0;transition:opacity .7s;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#b9d8ff 1px,transparent 1.5px);background-size:67px 61px,101px 87px;background-position:8px 10px,28px 35px}.weather-scene[data-time="night"] .scene-stars{opacity:.8}
+    .scene-sun,.scene-moon{position:absolute;z-index:2;right:16%;top:24px;width:67px;height:67px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff9d4,#ffd56c 58%,#ff9c50);box-shadow:0 0 27px 10px #ffe3a577,0 0 80px 28px #ffe3a544;transform:translateZ(40px);transition:opacity .5s}.scene-moon{opacity:0;background:radial-gradient(circle at 33% 27%,#fff,#c5d5f7 70%,#8da3cc);box-shadow:0 0 40px 12px #aec9ff55}.weather-scene[data-time="night"] .scene-sun{opacity:0}.weather-scene[data-time="night"] .scene-moon{opacity:1}
+    .scene-orb{position:absolute;left:50%;top:46%;width:min(47vw,330px);height:190px;border:1px solid #ffffff88;border-radius:50%;transform:translate(-50%,-50%) rotateX(64deg) rotateZ(-12deg);box-shadow:inset 0 0 34px #ffffff44,0 24px 35px #172a4c44;animation:orb-drift 8s ease-in-out infinite}.scene-orb::before,.scene-orb::after{content:"";position:absolute;inset:16px 31px;border:1px solid #ffffff66;border-radius:50%;transform:rotateY(62deg)}.scene-orb::after{transform:rotateY(-62deg)}
+    .scene-horizon{position:absolute;left:-10%;right:-10%;height:104px;bottom:-37px;border-radius:50% 50% 0 0;background:linear-gradient(180deg,#316e78,#153747);transform:rotateX(5deg);box-shadow:0 -9px 32px #d8ffff55}.scene-horizon::before{content:"";position:absolute;left:13%;right:12%;top:-20px;height:40px;border-radius:50%;background:#57979a;filter:blur(1px)}
+    .scene-cloud{position:absolute;z-index:3;width:106px;height:30px;border-radius:40px;background:linear-gradient(180deg,#fff,#d5e3ef);filter:drop-shadow(0 12px 8px #30476733);transform:translateZ(50px);animation:cloud-drift 7s ease-in-out infinite}.scene-cloud::before,.scene-cloud::after{content:"";position:absolute;bottom:9px;border-radius:50%;background:inherit}.scene-cloud::before{width:48px;height:48px;left:17px}.scene-cloud::after{width:37px;height:37px;left:49px}.cloud-a{left:16%;top:91px}.cloud-b{right:18%;top:119px;transform:translateZ(10px) scale(.72);animation-delay:-3s}.weather-scene[data-weather="clear"] .scene-cloud{opacity:0}.weather-scene[data-weather="rain"] .scene-cloud,.weather-scene[data-weather="storm"] .scene-cloud{background:linear-gradient(180deg,#9cabb9,#4c5e72)}.weather-scene[data-weather="fog"] .scene-cloud{filter:blur(3px);opacity:.68}
+    .scene-particles{position:absolute;z-index:4;inset:0;pointer-events:none}.scene-particle{position:absolute;left:var(--x);top:-18px;opacity:0}.scene-particle.rain{width:3px;height:19px;border-radius:4px;background:linear-gradient(#d5f4ff,#52afff);animation:rain-fall var(--duration) linear var(--delay) infinite}.scene-particle.snow{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff;animation:snow-fall var(--duration) linear var(--delay) infinite}.weather-scene[data-weather="rain"] .scene-particle,.weather-scene[data-weather="storm"] .scene-particle,.weather-scene[data-weather="snow"] .scene-particle{opacity:.9}
+    .scene-lightning{position:absolute;z-index:4;left:51%;top:86px;width:18px;height:63px;background:#fff6b5;clip-path:polygon(47% 0,100% 0,62% 43%,100% 43%,18% 100%,40% 53%,0 53%);filter:drop-shadow(0 0 13px #fff);opacity:0}.weather-scene[data-weather="storm"] .scene-lightning{animation:lightning-flash 4s steps(1,end) infinite}
+    .scene-caption{display:flex;justify-content:space-between;gap:12px;margin:12px 3px 0;color:#bdcbe8;font-size:13px}.scene-caption strong{color:white;font-size:15px}
+    @keyframes orb-drift{0%,100%{margin-top:0}50%{margin-top:-8px}}@keyframes cloud-drift{0%,100%{translate:-5px 0}50%{translate:8px -5px}}@keyframes rain-fall{0%{transform:translateY(-10px);opacity:0}12%{opacity:.9}100%{transform:translateY(310px);opacity:0}}@keyframes snow-fall{0%{transform:translate(0,-10px);opacity:0}15%{opacity:.9}100%{transform:translate(20px,310px);opacity:0}}@keyframes lightning-flash{0%,44%,48%,100%{opacity:0}45%,47%{opacity:1}}
+    @media(prefers-reduced-motion:reduce){.scene-orb,.scene-cloud,.scene-particle,.scene-lightning{animation:none!important}.scene-particle{display:none}}
     footer{margin-top:16px;color:#7f90b4;font-size:12px;text-align:center} [hidden]{display:none!important}
     @media(max-width:600px){body{padding:28px 14px}.search{grid-template-columns:1fr 1fr}.search button{grid-column:1/-1}.hero{padding:23px}.details{grid-template-columns:1fr 1fr}.detail:nth-child(2){border-right:0}.detail:nth-child(-n+2){border-bottom:1px solid #334365}}
   </style>
@@ -209,6 +221,15 @@ int main()
         <div class="detail"><div class="detail-name">Precipitation</div><div class="detail-value" id="precipitation">—</div></div>
       </div>
     </section>
+    <section class="visualizer" id="visualizer" aria-label="Animated 3D weather scene" hidden>
+      <div class="visualizer-head"><div><div class="viz-kicker">Live atmosphere</div><h2 id="scene-title">Clear skies</h2></div><div class="viz-wind" id="scene-wind">Wind 0 km/h</div></div>
+      <div class="weather-scene" id="weather-scene" data-weather="clear" data-time="day" role="img" aria-label="Animated weather scene">
+        <div class="scene-stars"></div><div class="scene-sun"></div><div class="scene-moon"></div>
+        <div class="scene-orb"></div><div class="scene-cloud cloud-a"></div><div class="scene-cloud cloud-b"></div>
+        <div class="scene-lightning"></div><div class="scene-particles" id="scene-particles"></div><div class="scene-horizon"></div>
+      </div>
+      <div class="scene-caption"><span id="scene-caption">The sky is clear.</span><strong id="scene-temperature">—°</strong></div>
+    </section>
     <section class="forecast" id="forecast-card" aria-label="Seven day forecast" hidden>
       <h2>7-day forecast</h2>
       <div class="forecast-grid" id="forecast-days"></div>
@@ -223,6 +244,9 @@ int main()
     const forecastCard = document.querySelector('#forecast-card');
     const forecastDays = document.querySelector('#forecast-days');
     const placeResults = document.querySelector('#place-results');
+    const visualizer = document.querySelector('#visualizer');
+    const weatherScene = document.querySelector('#weather-scene');
+    const sceneParticles = document.querySelector('#scene-particles');
     const conditions = code => {
       if (code === 0) return ['Clear sky', '☀️'];
       if (code === 1) return ['Mostly clear', '🌤️'];
@@ -237,6 +261,38 @@ int main()
       if (code >= 95) return ['Thunderstorm', '⛈️'];
       return ['Current conditions', '🌡️'];
     };
+    const sceneType = code => {
+      if (code >= 95) return 'storm';
+      if (code >= 71 && code <= 86) return 'snow';
+      if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) return 'rain';
+      if (code === 45 || code === 48) return 'fog';
+      if (code > 0) return 'cloudy';
+      return 'clear';
+    };
+    const sceneWords = {clear:'Clear skies',cloudy:'Clouds drifting',fog:'Misty conditions',rain:'Rain in motion',snow:'Snowfall',storm:'Thunderstorm'};
+    function updateScene(current, description) {
+      const type = sceneType(current.weather_code);
+      weatherScene.dataset.weather = type;
+      weatherScene.dataset.time = current.is_day ? 'day' : 'night';
+      weatherScene.setAttribute('aria-label', `${sceneWords[type]}, ${current.is_day ? 'daytime' : 'night'}`);
+      document.querySelector('#scene-title').textContent = sceneWords[type];
+      document.querySelector('#scene-caption').textContent = description;
+      document.querySelector('#scene-temperature').textContent = `${Math.round(current.temperature_2m)}°`;
+      document.querySelector('#scene-wind').textContent = `Wind ${current.wind_speed_10m} km/h`;
+      sceneParticles.replaceChildren();
+      const particleType = type === 'snow' ? 'snow' : (type === 'rain' || type === 'storm' ? 'rain' : '');
+      if (particleType) {
+        for (let index = 0; index < 24; index++) {
+          const particle = document.createElement('span');
+          particle.className = `scene-particle ${particleType}`;
+          particle.style.setProperty('--x', `${(index * 41 + 7) % 100}%`);
+          particle.style.setProperty('--delay', `${-((index * 13) % 30) / 10}s`);
+          particle.style.setProperty('--duration', `${2.4 + (index % 5) * .35}s`);
+          sceneParticles.append(particle);
+        }
+      }
+      visualizer.hidden = false;
+    }
     async function loadWeather(place) {
       button.disabled = true;
       status.textContent = `Getting weather for ${place.name}…`;
@@ -252,6 +308,7 @@ int main()
         document.querySelector('#temperature').textContent = Math.round(current.temperature_2m);
         document.querySelector('#condition').textContent = description;
         document.querySelector('#weather-icon').textContent = current.is_day ? icon : '🌙';
+        updateScene(current, description);
         document.querySelector('#feels-like').textContent = `${Math.round(current.apparent_temperature)} ${units.apparent_temperature}`;
         document.querySelector('#humidity').textContent = `${current.relative_humidity_2m}${units.relative_humidity_2m}`;
         document.querySelector('#wind').textContent = `${current.wind_speed_10m} ${units.wind_speed_10m}`;
