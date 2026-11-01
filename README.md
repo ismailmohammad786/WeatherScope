@@ -6,7 +6,8 @@ WeatherScope is a local weather dashboard built with a C++17 backend and an inte
 
 - Search for cities and places around the world.
 - See current temperature, feels-like temperature, humidity, wind, and precipitation.
-- Explore an interactive, textured 3D Earth. Drag to rotate, scroll to zoom, use **Reset view** to center the selected city, and pause or resume the spin.
+- Start at a steady Asia-centered view with Antarctica above the continent, or browse the globe manually. Drag to rotate, scroll to zoom, use **Asia view** to return to the default, and resume rotation when you want it.
+- Search for a city to rotate and zoom the Earth to its location, then browse photo views of the city with photographer, license, and source links.
 - View an hourly temperature graph and rain chances for the next 24 hours.
 - Browse a seven-day forecast with daily high and low temperatures and precipitation chances.
 - Compare and save up to three cities in this browser. Comparison cards include current conditions, a seven-day outlook, and a weather comfort estimate based on temperature, rain chance, and wind.
@@ -33,7 +34,7 @@ These commands assume CMake and the MinGW UCRT64 compiler are installed through 
 
 4. Open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser. The health check is at [http://127.0.0.1:8080/health](http://127.0.0.1:8080/health).
 
-The first configure can take a little longer because CMake downloads Crow, standalone Asio, and nlohmann/json. The backend uses Open-Meteo for forecast and geocoding data. The browser loads Three.js and Earth imagery from their respective public sources, so internet access is needed for live data and the detailed globe texture.
+The first configure can take a little longer because CMake downloads Crow, standalone Asio, and nlohmann/json. The backend uses Open-Meteo for forecast and geocoding data. The browser loads Three.js, Earth imagery, and city photos from their respective public sources, so internet access is needed for live data, the detailed globe texture, and photo search.
 
 To stop the server, focus its terminal and press **Ctrl+C**.
 
@@ -49,6 +50,7 @@ To stop the server, focus its terminal and press **Ctrl+C**.
 
 - Weather forecasts and place search: [Open-Meteo](https://open-meteo.com/).
 - 3D rendering and Earth imagery: [Three.js](https://threejs.org/).
+- City photos and their license information: [Wikimedia Commons](https://commons.wikimedia.org/). Photo details link to the original file pages.
 - City comparisons are stored in the browser that you use; they are not uploaded to a user account.
 
 
