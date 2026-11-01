@@ -186,6 +186,7 @@ int main()
     .forecast{margin-top:22px;padding:22px;border:1px solid #334365;border-radius:20px;background:#121d37}.forecast h2{margin:0 0 17px;font-size:20px}.forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px}.day-card{padding:13px 8px;text-align:center;border:1px solid #2b3b5c;border-radius:14px;background:#0f1930}.day-name{font-size:13px;color:#b8c4df}.day-icon{font-size:26px;margin:8px 0}.day-temp{font-size:14px;font-weight:650;white-space:nowrap}.day-rain{font-size:11px;color:#9aabce;margin-top:7px}
     .visualizer,.charts{padding:20px;border:1px solid #344a6c;border-radius:22px;background:linear-gradient(145deg,#111d33f5,#0e1729f5);overflow:hidden;box-shadow:0 20px 55px #0004}.visualizer{margin:0;min-width:0}.visualizer-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}.visualizer h2,.charts h2{font-size:20px;margin:3px 0}.viz-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#94add8}.viz-wind{font-size:12px;color:#c5d4ee;padding:8px 10px;border:1px solid #344e71;border-radius:999px;background:#162640}
     .globe-layout{display:grid;grid-template-columns:minmax(0,1fr);align-items:center;gap:10px}.globe-tools{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:7px}.globe-tools button{padding:7px 10px;border:1px solid #3a5476;border-radius:999px;background:#15243b;color:#c7d7ef;font-size:11px;font-weight:600}.globe-tools button:hover{background:#263f61;color:white}.globe-wrap{position:relative;display:grid;place-items:center;min-height:330px;height:clamp(320px,37vw,450px);border:1px solid #30496a;border-radius:18px;background:radial-gradient(ellipse at 50% 48%,#24456d 0,#152843 47%,#0b1424 82%);overflow:hidden}.globe-wrap::after{content:"";position:absolute;inset:auto 15% 3% 15%;height:9%;border-radius:50%;background:#76c9ff30;filter:blur(22px);pointer-events:none}#globe-container{position:absolute;inset:0;touch-action:none}#globe-container canvas{display:block;width:100%;height:100%;outline:none;cursor:grab}#globe-container canvas:active{cursor:grabbing}.globe-tip{position:absolute;z-index:2;bottom:13px;left:0;right:0;text-align:center;color:#a9bfdf;font-size:11px;pointer-events:none;text-shadow:0 1px 8px #06101f}.globe-loading,.globe-error{position:absolute;inset:0;display:grid;place-items:center;color:#d0e1f7;font-size:14px;text-align:center;padding:24px}.globe-info{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 3px 0}.globe-info h3{font-size:16px;margin:5px 0 0}.globe-info p{color:#b8c8e3;font-size:12px;line-height:1.45;margin:4px 0}.globe-key{display:flex;align-items:center;gap:8px;color:#aec3e3;font-size:11px;white-space:nowrap}.globe-dot{width:9px;height:9px;border-radius:50%;background:#ffe27a;box-shadow:0 0 13px #ffe27a}
+    .city-gallery{margin-top:20px;padding:22px;border:1px solid #344a6c;border-radius:21px;background:linear-gradient(145deg,#152640,#0c1628);box-shadow:0 20px 55px #0003}.city-gallery-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}.city-gallery h2{margin:0;font-size:20px}.city-gallery-sub{margin-top:5px;color:#93a9ca;font-size:12px}.city-gallery-status{color:#8fa5c9;font-size:11px}.city-photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}.city-photo{margin:0;overflow:hidden;border:1px solid #314663;border-radius:15px;background:#0a1425}.city-photo-link{display:block;position:relative;height:190px;background:radial-gradient(ellipse at 50% 45%,#294766,#0d1a2d);overflow:hidden}.city-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease,filter .45s ease}.city-photo-link:hover img{transform:scale(1.045);filter:saturate(1.08)}.city-photo figcaption{padding:10px 12px 12px}.city-photo-title{display:block;min-height:30px;color:#e8effa;font-size:11px;line-height:1.4;text-decoration:none}.city-photo-credit{display:block;margin-top:6px;color:#8ca3c4;font-size:10px;line-height:1.4}.city-photo-credit a{color:#9edeea;text-decoration:none}.city-photo-credit a:hover{text-decoration:underline}.city-photo-message{grid-column:1/-1;padding:28px 10px;text-align:center;color:#a5b9d5;font-size:13px}
     .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart-card{padding:16px;border:1px solid #2b3b5c;border-radius:16px;background:#0f1930;min-width:0}.chart-card h3{font-size:15px;margin:0 0 10px}.chart-card svg{width:100%;height:auto;overflow:visible}.chart-grid-line{stroke:#34445f;stroke-width:1}.chart-axis-label{fill:#8ea0c3;font:11px Inter,Segoe UI,Arial,sans-serif}.chart-high{fill:none;stroke:#ffb86b;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-low{fill:none;stroke:#78c8ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-high-dot{fill:#ffcf8c}.chart-low-dot{fill:#9cddff}.rain-bar{fill:#6bbce8;opacity:.85}.chart-legend{display:flex;gap:16px;color:#aab9df;font-size:12px;margin-top:6px}.legend-high::before,.legend-low::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#ffb86b}.legend-low::before{background:#78c8ff}
     .download-actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 2px}.download-actions button{background:#23385d;color:#e9f0ff;border:1px solid #40577f;padding:10px 14px}.download-actions button:hover{background:#2e4977}
     .hourly{margin-top:22px;padding:22px;border:1px solid #344a6c;border-radius:20px;background:linear-gradient(145deg,#13213a,#0e1729);box-shadow:0 20px 55px #0003}.hourly-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px}.hourly-head h2{font-size:20px;margin:0}.hourly-subtitle{margin-top:5px;color:#93a8ca;font-size:12px}.hourly-period{color:#a9c3e7;font-size:12px}.hourly-chart-card{padding:12px 14px 7px;border:1px solid #2b3b5c;border-radius:16px;background:#0c162a}.hourly-chart-card svg{display:block;width:100%;height:auto;overflow:visible}.hourly-temp-line{fill:none;stroke:#ffc77e;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px #ffb45b66)}.hourly-temp-area{fill:url(#hourly-temp-gradient)}.hourly-temp-dot{fill:#ffe0ad;stroke:#7f5831;stroke-width:2}.hourly-rain-bar{fill:#55bde9;opacity:.68}.hourly-grid-line{stroke:#30415e;stroke-width:1}.hourly-axis-label{fill:#8297ba;font:12px Inter,Segoe UI,Arial,sans-serif}.hourly-temp-label{fill:#f0c994;font:12px Inter,Segoe UI,Arial,sans-serif;font-weight:650}.hourly-legend{display:flex;gap:18px;align-items:center;margin:2px 4px 8px;color:#9fb2d0;font-size:11px}.hourly-legend span{display:flex;align-items:center;gap:7px}.hourly-legend i{display:inline-block;width:13px;height:3px;border-radius:4px;background:#ffc77e}.hourly-legend .rain-key{height:9px;width:9px;border-radius:3px;background:#55bde9}.hourly-strip{display:flex;gap:9px;overflow-x:auto;padding:12px 1px 6px;scrollbar-color:#426184 #101a2b;scrollbar-width:thin}.hourly-item{flex:0 0 76px;padding:12px 7px;text-align:center;border:1px solid #2b3b5c;border-radius:13px;background:linear-gradient(180deg,#152540,#0e192c)}.hourly-time{color:#aabbd6;font-size:11px}.hourly-icon{margin:8px 0;font-size:22px}.hourly-temp{font-size:16px;font-weight:700;color:#f4f7ff}.hourly-rain{margin-top:6px;color:#7dcaf0;font-size:10px;white-space:nowrap}
@@ -237,13 +238,17 @@ int main()
       </div>
     </section>
     <section class="visualizer" id="visualizer" aria-label="Interactive 3D globe" hidden>
-      <div class="visualizer-head"><div><div class="viz-kicker">Explore the location</div><h2>WeatherScope globe</h2></div><div class="globe-tools"><div class="viz-wind" id="globe-coordinates">—</div><button type="button" id="globe-reset" title="Center the selected city and stop globe rotation">Reset view</button><button type="button" id="globe-spin" aria-pressed="true">Pause spin</button></div></div>
+      <div class="visualizer-head"><div><div class="viz-kicker">Explore the location</div><h2>WeatherScope globe</h2></div><div class="globe-tools"><div class="viz-wind" id="globe-coordinates">—</div><button type="button" id="globe-reset" title="Return to the Asia-centered world view">Asia view</button><button type="button" id="globe-spin" aria-pressed="false">Resume spin</button></div></div>
       <div class="globe-layout">
-        <div class="globe-wrap"><div id="globe-container" aria-label="Interactive 3D Earth with selected location marker"><div class="globe-loading" id="globe-loading">Preparing the 3D Earth…</div></div><div class="globe-tip">Drag to rotate · scroll to zoom · use Reset view to center your city</div></div>
+        <div class="globe-wrap"><div id="globe-container" aria-label="Interactive 3D Earth with selected location marker"><div class="globe-loading" id="globe-loading">Preparing the 3D Earth…</div></div><div class="globe-tip">Asia-centered world view · drag to rotate · scroll to zoom</div></div>
         <div class="globe-info"><div class="viz-kicker">Selected location</div><h3 id="globe-location">Delhi</h3><p id="globe-description">Current conditions appear on the globe as you explore.</p><div class="globe-key"><span class="globe-dot"></span>Selected city</div></div>
       </div>
     </section>
     </div>
+    <section class="city-gallery" id="city-gallery" aria-label="Photos of selected city" hidden>
+      <div class="city-gallery-head"><div><h2 id="city-gallery-title">City views</h2><div class="city-gallery-sub">Explore photo views of the selected place</div></div><div class="city-gallery-status" id="city-gallery-status" aria-live="polite">Finding photos…</div></div>
+      <div class="city-photo-grid" id="city-photo-grid"></div>
+    </section>
     <section class="hourly" id="hourly-card" aria-label="Next 24 hours forecast" hidden>
       <div class="hourly-head"><div><h2>Next 24 hours</h2><div class="hourly-subtitle">Temperature and chance of rain, hour by hour</div></div><div class="hourly-period" id="hourly-period">Local time</div></div>
       <div class="hourly-chart-card"><div class="hourly-legend"><span><i></i>Temperature</span><span><i class="rain-key"></i>Rain chance</span></div><svg id="hourly-chart" viewBox="0 0 960 310" role="img" aria-label="Temperature and rain chance over the next 24 hours"></svg></div>
@@ -286,6 +291,11 @@ int main()
     const compareWeather=new Map();
     const placeResults = document.querySelector('#place-results');
     const visualizer = document.querySelector('#visualizer');
+    const cityGallery = document.querySelector('#city-gallery');
+    const cityGalleryTitle = document.querySelector('#city-gallery-title');
+    const cityGalleryStatus = document.querySelector('#city-gallery-status');
+    const cityPhotoGrid = document.querySelector('#city-photo-grid');
+    let cityPhotoRequest = 0;
     const chartsCard = document.querySelector('#charts-card');
     const launchScreen = document.querySelector('#launch-screen');
     const launchFill = document.querySelector('#launch-progress-fill');
@@ -347,12 +357,12 @@ int main()
       return ['Current conditions', '🌡️'];
     };
     let savedForecast = null;
-    function updateGlobe(place, current, description) {
+    function updateGlobe(place, current, description, focus) {
       const region = [place.admin1, place.country].filter(Boolean).join(', ');
       document.querySelector('#globe-location').textContent = [place.name, region].filter(Boolean).join(', ');
       document.querySelector('#globe-description').textContent = `${description} · ${Math.round(current.temperature_2m)}°C · ${current.time.replace('T',' ')}`;
       document.querySelector('#globe-coordinates').textContent = `${Number(place.latitude).toFixed(2)}°, ${Number(place.longitude).toFixed(2)}°`;
-      window.weatherScopePlace = {latitude:Number(place.latitude), longitude:Number(place.longitude), name:place.name};
+      window.weatherScopePlace = {latitude:Number(place.latitude), longitude:Number(place.longitude), name:place.name, focus:Boolean(focus)};
       window.dispatchEvent(new CustomEvent('weatherscope-place-change', {detail:window.weatherScopePlace}));
       visualizer.hidden = false;
     }
@@ -449,7 +459,31 @@ int main()
     }
     document.querySelector('#download-csv').addEventListener('click',()=>downloadForecast('csv'));
     document.querySelector('#download-json').addEventListener('click',()=>downloadForecast('json'));
-    async function loadWeather(place) {
+    function cleanMetadata(value){return new DOMParser().parseFromString(String(value||''),'text/html').body.textContent.trim();}
+    async function loadCityPhotos(place){
+      const requestId=++cityPhotoRequest;cityGallery.hidden=false;cityGalleryTitle.textContent=`${place.name} in pictures`;cityGalleryStatus.textContent='Finding city photos…';cityPhotoGrid.replaceChildren();
+      const note=document.createElement('div');note.className='city-photo-message';note.textContent='Looking for photo views of this place…';cityPhotoGrid.append(note);
+      const location=[place.name,place.admin1,place.country].filter(Boolean).join(' ');
+      try{
+        const query=new URLSearchParams({action:'query',generator:'search',gsrsearch:`${location} city`,gsrnamespace:'6',gsrlimit:'12',prop:'imageinfo',iiprop:'url|extmetadata',iiurlwidth:'900',format:'json',origin:'*'});
+        const response=await fetch(`https://commons.wikimedia.org/w/api.php?${query}`);if(!response.ok)throw new Error('Photo search failed');
+        const result=await response.json();if(requestId!==cityPhotoRequest)return;
+        const pages=Object.values(result.query?.pages||{}).filter(page=>page.imageinfo?.[0]?.thumburl);
+        cityPhotoGrid.replaceChildren();
+        if(!pages.length){cityGalleryStatus.textContent='No photos found';const empty=document.createElement('div');empty.className='city-photo-message';empty.textContent=`No city photos were found for ${place.name}.`;cityPhotoGrid.append(empty);return;}
+        cityGalleryStatus.textContent=`${pages.length} photo views · Wikimedia Commons`;
+        for(const page of pages.slice(0,4)){
+          const info=page.imageinfo[0];const figure=document.createElement('figure');figure.className='city-photo';
+          const source=document.createElement('a');source.className='city-photo-link';source.href=info.descriptionurl||info.url;source.target='_blank';source.rel='noopener noreferrer';source.title='Open photo details and license';
+          const image=document.createElement('img');image.src=info.thumburl;image.alt=`${place.name}: ${cleanMetadata(info.extmetadata?.ImageDescription?.value)||cleanMetadata(page.title.replace(/^File:/,''))}`;image.loading='lazy';image.decoding='async';source.append(image);
+          const caption=document.createElement('figcaption');const title=document.createElement('a');title.className='city-photo-title';title.href=info.descriptionurl||info.url;title.target='_blank';title.rel='noopener noreferrer';title.textContent=cleanMetadata(page.title.replace(/^File:/,'').replaceAll('_',' '));
+          const credit=document.createElement('span');credit.className='city-photo-credit';const artist=cleanMetadata(info.extmetadata?.Artist?.value);const license=cleanMetadata(info.extmetadata?.LicenseShortName?.value);credit.textContent=[artist?`Photo: ${artist}`:'Photo by a Wikimedia contributor',license].filter(Boolean).join(' · ');
+          const details=document.createElement('a');details.href=info.descriptionurl||info.url;details.target='_blank';details.rel='noopener noreferrer';details.textContent='Photo details';credit.append(document.createTextNode(' · '),details);
+          caption.append(title,credit);figure.append(source,caption);cityPhotoGrid.append(figure);
+        }
+      }catch(error){if(requestId!==cityPhotoRequest)return;cityGalleryStatus.textContent='Photos are unavailable';cityPhotoGrid.replaceChildren();const message=document.createElement('div');message.className='city-photo-message';message.textContent='City photos could not be loaded right now. Weather and the globe are still available.';cityPhotoGrid.append(message);}
+    }
+    async function loadWeather(place,{focus=true}={}) {
       button.disabled = true;
       status.textContent = `Getting weather for ${place.name}…`;
       try {
@@ -464,7 +498,8 @@ int main()
         document.querySelector('#temperature').textContent = Math.round(current.temperature_2m);
         document.querySelector('#condition').textContent = description;
         document.querySelector('#weather-icon').textContent = current.is_day ? icon : '🌙';
-        updateGlobe(place, current, description);
+        updateGlobe(place, current, description, focus);
+        loadCityPhotos(place);
         const hourly=data.hourly;
         if(hourly?.time?.length){
           const firstHour=hourly.time.findIndex(time=>time>=current.time.slice(0,13));
@@ -610,7 +645,7 @@ int main()
         button.disabled = false;
       }
     });
-    loadWeather({name:'Delhi', admin1:'Delhi', country:'India', latitude:28.576448, longitude:77.18678});
+    loadWeather({name:'Delhi', admin1:'Delhi', country:'India', latitude:28.576448, longitude:77.18678},{focus:false});
   </script>
   <script type="module">
     try {
@@ -620,7 +655,7 @@ int main()
       const loading = document.querySelector('#globe-loading');
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 30);
-      camera.position.set(0, 0.12, 3.35);
+      camera.position.set(0, 0.12, 3.65);
       const renderer = new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'high-performance'});
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(host.clientWidth, host.clientHeight, false);
@@ -643,6 +678,12 @@ int main()
       scene.add(new THREE.Points(starGeometry,new THREE.PointsMaterial({color:0xbfdcff,size:.018,sizeAttenuation:true,transparent:true,opacity:.8,depthWrite:false})));
 
       const earthGroup = new THREE.Group(); scene.add(earthGroup);
+      const asiaCenterLongitude=105*Math.PI/180;
+      const asiaCenterNormal=new THREE.Vector3(Math.cos(asiaCenterLongitude),0,-Math.sin(asiaCenterLongitude)).normalize();
+      const faceAsia=new THREE.Quaternion().setFromUnitVectors(asiaCenterNormal,new THREE.Vector3(0,0,1));
+      const southPoleUp=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),Math.PI);
+      const defaultWorldOrientation=southPoleUp.multiply(faceAsia);
+      earthGroup.quaternion.copy(defaultWorldOrientation);
       const sphere = new THREE.SphereGeometry(1,96,64);
       const textureLoader = new THREE.TextureLoader(); textureLoader.setCrossOrigin('anonymous');
       const earthMaterial = new THREE.MeshPhongMaterial({color:0xffffff,specular:0x31506c,shininess:18});
@@ -672,23 +713,25 @@ int main()
 
       const controls = new OrbitControls(camera,renderer.domElement);
       controls.enableRotate=true; controls.enableDamping=true; controls.dampingFactor=.08; controls.enablePan=false;
-      controls.rotateSpeed=.85; controls.minDistance=2.35; controls.maxDistance=4.8; controls.autoRotate=true; controls.autoRotateSpeed=.28;
+      controls.rotateSpeed=.85; controls.minDistance=2.05; controls.maxDistance=5.5; controls.autoRotate=false; controls.autoRotateSpeed=.28;
       controls.target.set(0,0,0); controls.update();
       const spinButton=document.querySelector('#globe-spin');
       const resetButton=document.querySelector('#globe-reset');
       function syncSpinButton(){spinButton.textContent=controls.autoRotate?'Pause spin':'Resume spin';spinButton.setAttribute('aria-pressed',String(controls.autoRotate));}
       spinButton.addEventListener('click',()=>{controls.autoRotate=!controls.autoRotate;syncSpinButton();});
-      function showPlace(place){
+      function showPlace(place,{focus=Boolean(place?.focus)}={}){
         if(!place)return;
         const latitude=Number(place.latitude)*Math.PI/180, longitude=Number(place.longitude)*Math.PI/180;
         const normal=new THREE.Vector3(Math.cos(latitude)*Math.cos(longitude),Math.sin(latitude),-Math.cos(latitude)*Math.sin(longitude)).normalize();
         marker.position.copy(normal.clone().multiplyScalar(1.004));
         marker.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),normal);
-        earthGroup.quaternion.setFromUnitVectors(normal,new THREE.Vector3(0,0,1));
-        controls.reset(); controls.update();
+        if(focus){
+          controls.autoRotate=false;earthGroup.quaternion.setFromUnitVectors(normal,new THREE.Vector3(0,0,1));
+          camera.position.set(0,.08,3.08);controls.target.set(0,0,0);controls.update();syncSpinButton();
+        }else{earthGroup.quaternion.copy(defaultWorldOrientation);}
       }
-      resetButton.addEventListener('click',()=>{controls.autoRotate=false;if(window.weatherScopePlace)showPlace(window.weatherScopePlace);else{controls.reset();controls.update();}syncSpinButton();});
-      window.addEventListener('weatherscope-place-change',event=>showPlace(event.detail));
+      resetButton.addEventListener('click',()=>{controls.autoRotate=false;earthGroup.quaternion.copy(defaultWorldOrientation);camera.position.set(0,.12,3.65);controls.target.set(0,0,0);controls.update();syncSpinButton();});
+      window.addEventListener('weatherscope-place-change',event=>showPlace(event.detail,{focus:Boolean(event.detail?.focus)}));
       showPlace(window.weatherScopePlace);
 
       const resize = ()=>{
