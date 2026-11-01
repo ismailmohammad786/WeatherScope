@@ -91,6 +91,8 @@ std::string fetchCurrentWeather(double latitude, double longitude)
           << "/v1/forecast?latitude=" << latitude
           << "&longitude=" << longitude
           << "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m"
+          << "&hourly=temperature_2m,precipitation_probability,weather_code"
+          << "&forecast_hours=48"
           << "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max"
           << "&forecast_days=7"
           << "&timezone=auto";
@@ -186,6 +188,7 @@ int main()
     .globe-layout{display:grid;grid-template-columns:minmax(0,1fr);align-items:center;gap:10px}.globe-wrap{position:relative;display:grid;place-items:center;min-height:330px;height:clamp(320px,37vw,450px);border:1px solid #30496a;border-radius:18px;background:radial-gradient(ellipse at 50% 48%,#24456d 0,#152843 47%,#0b1424 82%);overflow:hidden}.globe-wrap::after{content:"";position:absolute;inset:auto 15% 3% 15%;height:9%;border-radius:50%;background:#76c9ff30;filter:blur(22px);pointer-events:none}#globe-container{position:absolute;inset:0;touch-action:none}#globe-container canvas{display:block;width:100%;height:100%;outline:none}.globe-tip{position:absolute;z-index:2;bottom:13px;left:0;right:0;text-align:center;color:#a9bfdf;font-size:11px;pointer-events:none;text-shadow:0 1px 8px #06101f}.globe-loading,.globe-error{position:absolute;inset:0;display:grid;place-items:center;color:#d0e1f7;font-size:14px;text-align:center;padding:24px}.globe-info{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 3px 0}.globe-info h3{font-size:16px;margin:5px 0 0}.globe-info p{color:#b8c8e3;font-size:12px;line-height:1.45;margin:4px 0}.globe-key{display:flex;align-items:center;gap:8px;color:#aec3e3;font-size:11px;white-space:nowrap}.globe-dot{width:9px;height:9px;border-radius:50%;background:#ffe27a;box-shadow:0 0 13px #ffe27a}
     .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart-card{padding:16px;border:1px solid #2b3b5c;border-radius:16px;background:#0f1930;min-width:0}.chart-card h3{font-size:15px;margin:0 0 10px}.chart-card svg{width:100%;height:auto;overflow:visible}.chart-grid-line{stroke:#34445f;stroke-width:1}.chart-axis-label{fill:#8ea0c3;font:11px Inter,Segoe UI,Arial,sans-serif}.chart-high{fill:none;stroke:#ffb86b;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-low{fill:none;stroke:#78c8ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-high-dot{fill:#ffcf8c}.chart-low-dot{fill:#9cddff}.rain-bar{fill:#6bbce8;opacity:.85}.chart-legend{display:flex;gap:16px;color:#aab9df;font-size:12px;margin-top:6px}.legend-high::before,.legend-low::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#ffb86b}.legend-low::before{background:#78c8ff}
     .download-actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 2px}.download-actions button{background:#23385d;color:#e9f0ff;border:1px solid #40577f;padding:10px 14px}.download-actions button:hover{background:#2e4977}
+    .hourly{margin-top:22px;padding:22px;border:1px solid #344a6c;border-radius:20px;background:linear-gradient(145deg,#13213a,#0e1729);box-shadow:0 20px 55px #0003}.hourly-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px}.hourly-head h2{font-size:20px;margin:0}.hourly-subtitle{margin-top:5px;color:#93a8ca;font-size:12px}.hourly-period{color:#a9c3e7;font-size:12px}.hourly-chart-card{padding:12px 14px 7px;border:1px solid #2b3b5c;border-radius:16px;background:#0c162a}.hourly-chart-card svg{display:block;width:100%;height:auto;overflow:visible}.hourly-temp-line{fill:none;stroke:#ffc77e;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px #ffb45b66)}.hourly-temp-area{fill:url(#hourly-temp-gradient)}.hourly-temp-dot{fill:#ffe0ad;stroke:#7f5831;stroke-width:2}.hourly-rain-bar{fill:#55bde9;opacity:.68}.hourly-grid-line{stroke:#30415e;stroke-width:1}.hourly-axis-label{fill:#8297ba;font:12px Inter,Segoe UI,Arial,sans-serif}.hourly-temp-label{fill:#f0c994;font:12px Inter,Segoe UI,Arial,sans-serif;font-weight:650}.hourly-legend{display:flex;gap:18px;align-items:center;margin:2px 4px 8px;color:#9fb2d0;font-size:11px}.hourly-legend span{display:flex;align-items:center;gap:7px}.hourly-legend i{display:inline-block;width:13px;height:3px;border-radius:4px;background:#ffc77e}.hourly-legend .rain-key{height:9px;width:9px;border-radius:3px;background:#55bde9}.hourly-strip{display:flex;gap:9px;overflow-x:auto;padding:12px 1px 6px;scrollbar-color:#426184 #101a2b;scrollbar-width:thin}.hourly-item{flex:0 0 76px;padding:12px 7px;text-align:center;border:1px solid #2b3b5c;border-radius:13px;background:linear-gradient(180deg,#152540,#0e192c)}.hourly-time{color:#aabbd6;font-size:11px}.hourly-icon{margin:8px 0;font-size:22px}.hourly-temp{font-size:16px;font-weight:700;color:#f4f7ff}.hourly-rain{margin-top:6px;color:#7dcaf0;font-size:10px;white-space:nowrap}
     @media(max-width:820px){.top-grid{grid-template-columns:1fr}.globe-wrap{height:min(86vw,450px)}.charts-grid{grid-template-columns:1fr}}
     footer{margin-top:16px;color:#7f90b4;font-size:12px;text-align:center} [hidden]{display:none!important}
     @media(max-width:600px){body{padding:24px 12px 45px}.search{grid-template-columns:1fr}.search button{grid-column:1}.hero{padding:23px}.details{grid-template-columns:1fr 1fr}.detail:nth-child(2){border-right:0}.detail:nth-child(-n+2){border-bottom:1px solid #334365}.globe-info{align-items:flex-start;flex-direction:column}.charts,.visualizer{padding:15px}}
@@ -240,6 +243,11 @@ int main()
       </div>
     </section>
     </div>
+    <section class="hourly" id="hourly-card" aria-label="Next 24 hours forecast" hidden>
+      <div class="hourly-head"><div><h2>Next 24 hours</h2><div class="hourly-subtitle">Temperature and chance of rain, hour by hour</div></div><div class="hourly-period" id="hourly-period">Local time</div></div>
+      <div class="hourly-chart-card"><div class="hourly-legend"><span><i></i>Temperature</span><span><i class="rain-key"></i>Rain chance</span></div><svg id="hourly-chart" viewBox="0 0 960 310" role="img" aria-label="Temperature and rain chance over the next 24 hours"></svg></div>
+      <div class="hourly-strip" id="hourly-strip" aria-label="Hourly forecast details"></div>
+    </section>
     <section class="forecast" id="forecast-card" aria-label="Seven day forecast" hidden>
       <h2>7-day forecast</h2>
       <div class="forecast-grid" id="forecast-days"></div>
@@ -261,6 +269,8 @@ int main()
     const card = document.querySelector('#weather-card');
     const forecastCard = document.querySelector('#forecast-card');
     const forecastDays = document.querySelector('#forecast-days');
+    const hourlyCard = document.querySelector('#hourly-card');
+    const hourlyStrip = document.querySelector('#hourly-strip');
     const placeResults = document.querySelector('#place-results');
     const visualizer = document.querySelector('#visualizer');
     const chartsCard = document.querySelector('#charts-card');
@@ -378,6 +388,30 @@ int main()
       });
       svg.setAttribute('aria-label','Seven day maximum chance of precipitation by day');
     }
+    function hourLabel(isoTime) {
+      const hour=Number(isoTime.slice(11,13));
+      return new Intl.DateTimeFormat(undefined,{hour:'numeric',hour12:true,timeZone:'UTC'}).format(new Date(Date.UTC(2000,0,1,hour)));
+    }
+    function drawHourlyChart(hourly, units, timezone) {
+      const svg=document.querySelector('#hourly-chart');svg.replaceChildren();
+      const times=hourly.time;const temperatures=hourly.temperature_2m;const rain=hourly.precipitation_probability;
+      const left=56,right=930,top=30,tempBottom=190,rainBottom=260;
+      const valid=temperatures.filter(Number.isFinite);if(!times.length||!valid.length)return;
+      let min=Math.floor((Math.min(...valid)-2)/5)*5,max=Math.ceil((Math.max(...valid)+2)/5)*5;if(min===max){min-=5;max+=5;}
+      const xAt=i=>left+(right-left)*i/Math.max(1,times.length-1);const yAt=value=>tempBottom-(value-min)/(max-min)*(tempBottom-top);
+      const defs=svgElement('defs');const gradient=svgElement('linearGradient',{id:'hourly-temp-gradient',x1:'0',y1:'0',x2:'0',y2:'1'});gradient.append(svgElement('stop',{offset:'0%','stop-color':'#ffc77e','stop-opacity':'.24'}),svgElement('stop',{offset:'100%','stop-color':'#ffc77e','stop-opacity':'0'}));defs.append(gradient);svg.append(defs);
+      const tickStep=Math.max(2,Math.ceil((max-min)/4/2)*2);
+      for(let tick=Math.ceil(min/tickStep)*tickStep;tick<=max;tick+=tickStep){const y=yAt(tick);svg.append(svgElement('line',{x1:left,y1:y,x2:right,y2:y,class:'hourly-grid-line'}),svgElement('text',{x:left-10,y:y+4,'text-anchor':'end',class:'hourly-axis-label'},`${tick}°`));}
+      for(let tick=0;tick<=100;tick+=50){const y=rainBottom-tick/100*54;svg.append(svgElement('text',{x:right+10,y:y+4,'text-anchor':'start',class:'hourly-axis-label'},`${tick}%`));}
+      times.forEach((time,index)=>{const probability=Math.max(0,Math.min(100,rain[index]??0));const height=probability/100*54;svg.append(svgElement('rect',{x:xAt(index)-7,y:rainBottom-height,width:14,height:height,rx:4,class:'hourly-rain-bar'}));});
+      let line='';let area=`${xAt(0)},${tempBottom} `;temperatures.forEach((value,index)=>{if(!Number.isFinite(value))return;const point=`${xAt(index)},${yAt(value)}`;line+=(line?' ':'')+point;area+=point+' ';});area+=`${xAt(times.length-1)},${tempBottom}`;
+      svg.append(svgElement('polygon',{points:area,class:'hourly-temp-area'}),svgElement('polyline',{points:line,class:'hourly-temp-line'}));
+      temperatures.forEach((value,index)=>{if(index%3===0||index===times.length-1){if(Number.isFinite(value))svg.append(svgElement('circle',{cx:xAt(index),cy:yAt(value),r:4,class:'hourly-temp-dot'}),svgElement('text',{x:xAt(index),y:yAt(value)-11,'text-anchor':'middle',class:'hourly-temp-label'},`${Math.round(value)}°`));svg.append(svgElement('text',{x:xAt(index),y:292,'text-anchor':'middle',class:'hourly-axis-label'},hourLabel(times[index])));}});
+      svg.setAttribute('aria-label',`Hourly temperature in ${units.temperature_2m} and rain chance from ${times[0]} to ${times[times.length-1]} (${timezone})`);
+      document.querySelector('#hourly-period').textContent=`${hourLabel(times[0])} – ${hourLabel(times[times.length-1])} · local time`;
+      hourlyStrip.replaceChildren();
+      times.forEach((time,index)=>{const [description,icon]=conditions(hourly.weather_code[index]);const item=document.createElement('article');item.className='hourly-item';const label=document.createElement('div');label.className='hourly-time';label.textContent=hourLabel(time);const symbol=document.createElement('div');symbol.className='hourly-icon';symbol.textContent=icon;symbol.title=description;const temp=document.createElement('div');temp.className='hourly-temp';temp.textContent=`${Math.round(temperatures[index])}°`;const precip=document.createElement('div');precip.className='hourly-rain';precip.textContent=`Rain ${rain[index]??'—'}%`;item.append(label,symbol,temp,precip);hourlyStrip.append(item);});
+    }
     function downloadForecast(format) {
       if(!savedForecast)return;
       const {location,timezone,generatedAt,units,daily}=savedForecast;
@@ -418,6 +452,13 @@ int main()
         document.querySelector('#condition').textContent = description;
         document.querySelector('#weather-icon').textContent = current.is_day ? icon : '🌙';
         updateGlobe(place, current, description);
+        const hourly=data.hourly;
+        if(hourly?.time?.length){
+          const firstHour=hourly.time.findIndex(time=>time>=current.time.slice(0,13));
+          const start=Math.max(0,firstHour);
+          const hourly24={time:hourly.time.slice(start,start+24),temperature_2m:hourly.temperature_2m.slice(start,start+24),precipitation_probability:hourly.precipitation_probability.slice(start,start+24),weather_code:hourly.weather_code.slice(start,start+24)};
+          drawHourlyChart(hourly24,data.hourly_units,data.timezone);hourlyCard.hidden=false;
+        }else{hourlyCard.hidden=true;}
         document.querySelector('#feels-like').textContent = `${Math.round(current.apparent_temperature)} ${units.apparent_temperature}`;
         document.querySelector('#humidity').textContent = `${current.relative_humidity_2m}${units.relative_humidity_2m}`;
         document.querySelector('#wind').textContent = `${current.wind_speed_10m} ${units.wind_speed_10m}`;
