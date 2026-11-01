@@ -91,6 +91,8 @@ std::string fetchCurrentWeather(double latitude, double longitude)
           << "/v1/forecast?latitude=" << latitude
           << "&longitude=" << longitude
           << "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m"
+          << "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max"
+          << "&forecast_days=7"
           << "&timezone=auto";
     return fetchHttpsJson(L"api.open-meteo.com", query.str());
 }
@@ -178,6 +180,7 @@ int main()
     .weather{border:1px solid #334365;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#1c2c51,#101a32 72%);box-shadow:0 22px 70px #0005}
     .hero{padding:30px;display:flex;align-items:center;justify-content:space-between;gap:15px}.place{color:#b8c4df;font-size:14px}.temperature{font-size:clamp(60px,13vw,100px);font-weight:650;letter-spacing:-.07em;line-height:1;margin:10px 0}.condition{font-size:19px;color:#e4ecff}.weather-icon{font-size:72px;filter:drop-shadow(0 10px 18px #0004)}
     .details{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #334365}.detail{padding:20px 22px;border-right:1px solid #334365}.detail:last-child{border-right:0}.detail-name{font-size:12px;color:#9aabce}.detail-value{margin-top:8px;font-size:20px;font-weight:650}
+    .forecast{margin-top:22px;padding:22px;border:1px solid #334365;border-radius:20px;background:#121d37}.forecast h2{margin:0 0 17px;font-size:20px}.forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px}.day-card{padding:13px 8px;text-align:center;border:1px solid #2b3b5c;border-radius:14px;background:#0f1930}.day-name{font-size:13px;color:#b8c4df}.day-icon{font-size:26px;margin:8px 0}.day-temp{font-size:14px;font-weight:650;white-space:nowrap}.day-rain{font-size:11px;color:#9aabce;margin-top:7px}
     footer{margin-top:16px;color:#7f90b4;font-size:12px;text-align:center} [hidden]{display:none!important}
     @media(max-width:600px){body{padding:28px 14px}.search{grid-template-columns:1fr 1fr}.search button{grid-column:1/-1}.hero{padding:23px}.details{grid-template-columns:1fr 1fr}.detail:nth-child(2){border-right:0}.detail:nth-child(-n+2){border-bottom:1px solid #334365}}
   </style>
@@ -206,6 +209,10 @@ int main()
         <div class="detail"><div class="detail-name">Precipitation</div><div class="detail-value" id="precipitation">—</div></div>
       </div>
     </section>
+    <section class="forecast" id="forecast-card" aria-label="Seven day forecast" hidden>
+      <h2>7-day forecast</h2>
+      <div class="forecast-grid" id="forecast-days"></div>
+    </section>
     <footer>Current conditions from Open-Meteo</footer>
   </main>
   <script>
@@ -213,6 +220,8 @@ int main()
     const button = document.querySelector('#search-button');
     const status = document.querySelector('#status');
     const card = document.querySelector('#weather-card');
+    const forecastCard = document.querySelector('#forecast-card');
+    const forecastDays = document.querySelector('#forecast-days');
     const placeResults = document.querySelector('#place-results');
     const conditions = code => {
       if (code === 0) return ['Clear sky', '☀️'];
@@ -247,7 +256,31 @@ int main()
         document.querySelector('#humidity').textContent = `${current.relative_humidity_2m}${units.relative_humidity_2m}`;
         document.querySelector('#wind').textContent = `${current.wind_speed_10m} ${units.wind_speed_10m}`;
         document.querySelector('#precipitation').textContent = `${current.precipitation} ${units.precipitation}`;
+        forecastDays.replaceChildren();
+        const daily = data.daily;
+        const dailyUnits = data.daily_units;
+        daily.time.forEach((date, index) => {
+          const [description, icon] = conditions(daily.weather_code[index]);
+          const day = document.createElement('article');
+          day.className = 'day-card';
+          const name = document.createElement('div');
+          name.className = 'day-name';
+          name.textContent = new Date(`${date}T12:00:00`).toLocaleDateString(undefined, {weekday:'short'});
+          const symbol = document.createElement('div');
+          symbol.className = 'day-icon';
+          symbol.textContent = icon;
+          symbol.title = description;
+          const temperatures = document.createElement('div');
+          temperatures.className = 'day-temp';
+          temperatures.textContent = `${Math.round(daily.temperature_2m_max[index])}° / ${Math.round(daily.temperature_2m_min[index])}°`;
+          const rain = document.createElement('div');
+          rain.className = 'day-rain';
+          rain.textContent = `Rain ${daily.precipitation_probability_max[index] ?? '—'}${dailyUnits.precipitation_probability_max}`;
+          day.append(name, symbol, temperatures, rain);
+          forecastDays.append(day);
+        });
         card.hidden = false;
+        forecastCard.hidden = false;
         placeResults.hidden = true;
         status.textContent = `Weather updated for ${place.name}.`;
       } catch (error) {
