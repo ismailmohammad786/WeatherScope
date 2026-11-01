@@ -168,40 +168,44 @@ int main()
   <meta name="theme-color" content="#101a35">
   <title>WeatherScope</title>
   <style>
-    :root{color-scheme:dark;font-family:Inter,Segoe UI,Arial,sans-serif;background:#0b1224;color:#f4f7ff}
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#344b83 0,transparent 55%),#0b1224;padding:42px 18px}
-    main{max-width:1060px;margin:0 auto}.brand{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#aab9df;font-weight:700}
-    h1{font-size:clamp(34px,7vw,58px);margin:10px 0 8px;letter-spacing:-.045em}.intro{margin:0;color:#b8c4df;font-size:17px}
-    .search{margin:30px 0 18px;padding:18px;border:1px solid #334365;border-radius:18px;background:#121d37;display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end}
+    :root{color-scheme:dark;font-family:Inter,Segoe UI,Arial,sans-serif;background:#070d1a;color:#f5f8ff}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 78% -12%,#42639266 0,transparent 42%),radial-gradient(ellipse at 8% 15%,#18355880 0,transparent 34%),#070d1a;padding:32px 20px 60px}
+    main{max-width:1160px;margin:0 auto}.brand-row{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#c0d2f4;font-weight:750}.brand-pill{margin-left:9px;padding:4px 8px;border:1px solid #40678c;border-radius:999px;color:#7de2da;font-size:9px;letter-spacing:.14em;vertical-align:2px}.source-label{font-size:12px;color:#8fa5c8}
+    h1{font-size:clamp(36px,6vw,64px);margin:16px 0 7px;letter-spacing:-.055em;line-height:1.02}.intro{margin:0;color:#aebed9;font-size:16px}
+    .search{margin:25px 0 16px;padding:15px 17px;border:1px solid #334c6b;border-radius:17px;background:linear-gradient(120deg,#111e34eF,#10192dee);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;box-shadow:0 15px 42px #0003}
     label{display:grid;gap:7px;color:#b8c4df;font-size:13px}input{width:100%;padding:12px 13px;border:1px solid #425273;border-radius:10px;background:#0c152b;color:white;font:inherit}
     button{border:0;border-radius:10px;background:#a9e2ff;color:#10213b;font:inherit;font-size:15px;font-weight:700;padding:13px 20px;cursor:pointer}button:hover{background:#c6edff}button:disabled{opacity:.6;cursor:wait}
     .hint{grid-column:1/-1;margin:0;color:#8998ba;font-size:12px}.status{min-height:24px;color:#b9c8e7;font-size:14px;margin:14px 2px}
     .results{display:grid;gap:9px;margin:14px 0}.place-option{width:100%;text-align:left;border:1px solid #334365;background:#121d37;color:#eef3ff;padding:14px 16px}.place-option:hover{background:#1b2b4d;color:white}
-    .weather{border:1px solid #334365;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#1c2c51,#101a32 72%);box-shadow:0 22px 70px #0005}
+    .top-grid{display:grid;grid-template-columns:minmax(300px,.84fr) minmax(420px,1.16fr);gap:18px;align-items:stretch;margin-top:18px}.weather{border:1px solid #344a6c;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#1e3458,#10192e 78%);box-shadow:0 22px 70px #0005;margin:0;display:flex;flex-direction:column;justify-content:space-between}
     .hero{padding:30px;display:flex;align-items:center;justify-content:space-between;gap:15px}.place{color:#b8c4df;font-size:14px}.temperature{font-size:clamp(60px,13vw,100px);font-weight:650;letter-spacing:-.07em;line-height:1;margin:10px 0}.condition{font-size:19px;color:#e4ecff}.weather-icon{font-size:72px;filter:drop-shadow(0 10px 18px #0004)}
     .details{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #334365}.detail{padding:20px 22px;border-right:1px solid #334365}.detail:last-child{border-right:0}.detail-name{font-size:12px;color:#9aabce}.detail-value{margin-top:8px;font-size:20px;font-weight:650}
     .forecast{margin-top:22px;padding:22px;border:1px solid #334365;border-radius:20px;background:#121d37}.forecast h2{margin:0 0 17px;font-size:20px}.forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px}.day-card{padding:13px 8px;text-align:center;border:1px solid #2b3b5c;border-radius:14px;background:#0f1930}.day-name{font-size:13px;color:#b8c4df}.day-icon{font-size:26px;margin:8px 0}.day-temp{font-size:14px;font-weight:650;white-space:nowrap}.day-rain{font-size:11px;color:#9aabce;margin-top:7px}
-    .visualizer,.charts{margin-top:22px;padding:20px;border:1px solid #334365;border-radius:22px;background:#121d37;overflow:hidden}.visualizer-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.visualizer h2,.charts h2{font-size:20px;margin:3px 0}.viz-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#91a8d6}.viz-wind{font-size:13px;color:#b8c4df}
-    .globe-layout{display:grid;grid-template-columns:minmax(280px,1.15fr) minmax(190px,.85fr);align-items:center;gap:20px}.globe-wrap{position:relative;display:grid;place-items:center;min-height:390px;border-radius:18px;background:radial-gradient(ellipse at center,#243d67 0,#14223e 54%,#101a30 76%)}#globe-canvas{display:block;width:min(100%,440px);aspect-ratio:1;touch-action:none;cursor:grab}#globe-canvas:active{cursor:grabbing}.globe-tip{position:absolute;bottom:15px;left:0;right:0;text-align:center;color:#91a8d6;font-size:12px;pointer-events:none}.globe-info{padding:12px}.globe-info h3{font-size:25px;margin:8px 0}.globe-info p{color:#b8c4df;line-height:1.6}.globe-key{display:flex;align-items:center;gap:9px;margin-top:18px;color:#aab9df;font-size:13px}.globe-dot{width:10px;height:10px;border-radius:50%;background:#ffe37b;box-shadow:0 0 13px #ffe37b}
+    .visualizer,.charts{padding:20px;border:1px solid #344a6c;border-radius:22px;background:linear-gradient(145deg,#111d33f5,#0e1729f5);overflow:hidden;box-shadow:0 20px 55px #0004}.visualizer{margin:0;min-width:0}.visualizer-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}.visualizer h2,.charts h2{font-size:20px;margin:3px 0}.viz-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#94add8}.viz-wind{font-size:12px;color:#c5d4ee;padding:8px 10px;border:1px solid #344e71;border-radius:999px;background:#162640}
+    .globe-layout{display:grid;grid-template-columns:minmax(0,1fr);align-items:center;gap:10px}.globe-wrap{position:relative;display:grid;place-items:center;min-height:330px;height:clamp(320px,37vw,450px);border:1px solid #30496a;border-radius:18px;background:radial-gradient(ellipse at 50% 48%,#24456d 0,#152843 47%,#0b1424 82%);overflow:hidden}.globe-wrap::after{content:"";position:absolute;inset:auto 15% 3% 15%;height:9%;border-radius:50%;background:#76c9ff30;filter:blur(22px);pointer-events:none}#globe-container{position:absolute;inset:0;touch-action:none}#globe-container canvas{display:block;width:100%;height:100%;outline:none}.globe-tip{position:absolute;z-index:2;bottom:13px;left:0;right:0;text-align:center;color:#a9bfdf;font-size:11px;pointer-events:none;text-shadow:0 1px 8px #06101f}.globe-loading,.globe-error{position:absolute;inset:0;display:grid;place-items:center;color:#d0e1f7;font-size:14px;text-align:center;padding:24px}.globe-info{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 3px 0}.globe-info h3{font-size:16px;margin:5px 0 0}.globe-info p{color:#b8c8e3;font-size:12px;line-height:1.45;margin:4px 0}.globe-key{display:flex;align-items:center;gap:8px;color:#aec3e3;font-size:11px;white-space:nowrap}.globe-dot{width:9px;height:9px;border-radius:50%;background:#ffe27a;box-shadow:0 0 13px #ffe27a}
     .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart-card{padding:16px;border:1px solid #2b3b5c;border-radius:16px;background:#0f1930;min-width:0}.chart-card h3{font-size:15px;margin:0 0 10px}.chart-card svg{width:100%;height:auto;overflow:visible}.chart-grid-line{stroke:#34445f;stroke-width:1}.chart-axis-label{fill:#8ea0c3;font:11px Inter,Segoe UI,Arial,sans-serif}.chart-high{fill:none;stroke:#ffb86b;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-low{fill:none;stroke:#78c8ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-high-dot{fill:#ffcf8c}.chart-low-dot{fill:#9cddff}.rain-bar{fill:#6bbce8;opacity:.85}.chart-legend{display:flex;gap:16px;color:#aab9df;font-size:12px;margin-top:6px}.legend-high::before,.legend-low::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#ffb86b}.legend-low::before{background:#78c8ff}
     .download-actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 2px}.download-actions button{background:#23385d;color:#e9f0ff;border:1px solid #40577f;padding:10px 14px}.download-actions button:hover{background:#2e4977}
-    @media(max-width:720px){.globe-layout{grid-template-columns:1fr}.globe-wrap{min-height:320px}.globe-info{padding:4px 8px}.charts-grid{grid-template-columns:1fr}}
+    @media(max-width:820px){.top-grid{grid-template-columns:1fr}.globe-wrap{height:min(86vw,450px)}.charts-grid{grid-template-columns:1fr}}
     footer{margin-top:16px;color:#7f90b4;font-size:12px;text-align:center} [hidden]{display:none!important}
-    @media(max-width:600px){body{padding:28px 14px}.search{grid-template-columns:1fr 1fr}.search button{grid-column:1/-1}.hero{padding:23px}.details{grid-template-columns:1fr 1fr}.detail:nth-child(2){border-right:0}.detail:nth-child(-n+2){border-bottom:1px solid #334365}.globe-wrap{min-height:275px}.charts,.visualizer{padding:15px}}
+    @media(max-width:600px){body{padding:24px 12px 45px}.search{grid-template-columns:1fr}.search button{grid-column:1}.hero{padding:23px}.details{grid-template-columns:1fr 1fr}.detail:nth-child(2){border-right:0}.detail:nth-child(-n+2){border-bottom:1px solid #334365}.globe-info{align-items:flex-start;flex-direction:column}.charts,.visualizer{padding:15px}}
   </style>
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"}}
+  </script>
 </head>
 <body>
   <main>
-    <div class="brand">WeatherScope</div>
-    <h1>Weather, in focus.</h1>
-    <p class="intro">A clear look at current conditions for any coordinates.</p>
+    <div class="brand-row"><div class="brand">WeatherScope<span class="brand-pill">LIVE</span></div><div class="source-label">Live weather · Global view</div></div>
+    <h1>See weather from every angle.</h1>
+    <p class="intro">Current conditions, a real 3D Earth, and your week ahead.</p>
     <form class="search" id="weather-form">
-      <label style="grid-column:1/3">City or place<input id="city" type="search" value="Delhi" placeholder="Try London, Toronto, or Mumbai" minlength="2" required></label>
+      <label>City or place<input id="city" type="search" value="Delhi" placeholder="Try London, Toronto, or Mumbai" minlength="2" required></label>
       <button id="search-button" type="submit">Find place</button>
       <p class="hint">Type a place name, then choose the matching city or region.</p>
     </form>
     <div class="results" id="place-results" aria-label="Matching places" hidden></div>
     <p class="status" id="status" role="status" aria-live="polite">Loading current weather…</p>
+    <div class="top-grid">
     <section class="weather" id="weather-card" aria-label="Current weather" hidden>
       <div class="hero">
         <div><div class="place" id="place">Current conditions</div><div class="temperature"><span id="temperature">—</span><span style="font-size:.48em;vertical-align:top">°</span></div><div class="condition" id="condition">—</div></div>
@@ -217,10 +221,11 @@ int main()
     <section class="visualizer" id="visualizer" aria-label="Interactive 3D globe" hidden>
       <div class="visualizer-head"><div><div class="viz-kicker">Explore the location</div><h2>WeatherScope globe</h2></div><div class="viz-wind" id="globe-coordinates">—</div></div>
       <div class="globe-layout">
-        <div class="globe-wrap"><canvas id="globe-canvas" width="640" height="640" aria-label="Draggable 3D globe with selected location marker"></canvas><div class="globe-tip">Drag the globe to rotate · the gold marker is your selected place</div></div>
+        <div class="globe-wrap"><div id="globe-container" aria-label="Interactive 3D Earth with selected location marker"><div class="globe-loading" id="globe-loading">Preparing the 3D Earth…</div></div><div class="globe-tip">Drag to rotate · scroll to zoom · gold marker is your place</div></div>
         <div class="globe-info"><div class="viz-kicker">Selected location</div><h3 id="globe-location">Delhi</h3><p id="globe-description">Current conditions appear on the globe as you explore.</p><div class="globe-key"><span class="globe-dot"></span>Selected city</div></div>
       </div>
     </section>
+    </div>
     <section class="forecast" id="forecast-card" aria-label="Seven day forecast" hidden>
       <h2>7-day forecast</h2>
       <div class="forecast-grid" id="forecast-days"></div>
@@ -233,7 +238,7 @@ int main()
       </div>
       <div class="download-actions"><button id="download-csv" type="button">Download CSV</button><button id="download-json" type="button">Download JSON</button></div>
     </section>
-    <footer>Current conditions from Open-Meteo</footer>
+    <footer>Weather data by Open-Meteo · Detailed Earth imagery from the Three.js globe example</footer>
   </main>
   <script>
     const form = document.querySelector('#weather-form');
@@ -245,142 +250,15 @@ int main()
     const placeResults = document.querySelector('#place-results');
     const visualizer = document.querySelector('#visualizer');
     const chartsCard = document.querySelector('#charts-card');
-    const globeCanvas = document.querySelector('#globe-canvas');
-    const globeContext = globeCanvas.getContext('2d');
-    let globeCenter = {latitude: 20, longitude: 0};
-    let globePlace = {latitude: 20, longitude: 0};
     let savedForecast = null;
-    const conditions = code => {
-      if (code === 0) return ['Clear sky', '☀️'];
-      if (code === 1) return ['Mostly clear', '🌤️'];
-      if (code === 2) return ['Partly cloudy', '⛅'];
-      if (code === 3) return ['Overcast', '☁️'];
-      if (code === 45 || code === 48) return ['Foggy', '🌫️'];
-      if (code >= 51 && code <= 57) return ['Drizzle', '🌦️'];
-      if (code >= 61 && code <= 67) return ['Rain', '🌧️'];
-      if (code >= 71 && code <= 77) return ['Snow', '❄️'];
-      if (code >= 80 && code <= 82) return ['Rain showers', '🌦️'];
-      if (code >= 85 && code <= 86) return ['Snow showers', '🌨️'];
-      if (code >= 95) return ['Thunderstorm', '⛈️'];
-      return ['Current conditions', '🌡️'];
-    };
-    const landPolygons = [
-      [[-168,72],[-145,70],[-130,55],[-124,48],[-116,32],[-107,23],[-98,17],[-91,18],[-83,9],[-77,8],[-80,25],[-67,45],[-58,51],[-66,59],[-91,62],[-110,70],[-135,72]],
-      [[-74,12],[-60,9],[-48,-1],[-36,-8],[-45,-24],[-53,-39],[-66,-56],[-73,-42],[-78,-15]],
-      [[-52,82],[-25,80],[-20,67],[-38,59],[-52,63]],
-      [[-12,36],[-8,50],[8,58],[25,70],[48,69],[65,58],[85,56],[105,72],[135,68],[160,60],[179,65],[179,8],[155,5],[140,20],[121,22],[110,5],[98,8],[80,8],[72,20],[56,25],[46,38],[30,35],[20,40],[10,37],[3,43],[-5,42]],
-      [[-18,36],[3,38],[16,32],[34,30],[51,12],[42,-5],[34,-18],[18,-35],[10,-34],[0,-18],[-6,2],[-17,16]],
-      [[69,24],[82,28],[96,22],[105,9],[100,-1],[91,6],[80,7],[73,14]],
-      [[112,-11],[133,-10],[153,-25],[146,-39],[126,-43],[114,-33]],
-      [[-180,-72],[-120,-75],[-60,-73],[0,-75],[60,-72],[120,-75],[180,-72],[180,-88],[-180,-88]]
-    ];
-    const toViewPoint = (longitude, latitude) => {
-      const rad = Math.PI / 180;
-      const phi = latitude * rad;
-      const phi0 = globeCenter.latitude * rad;
-      const delta = (longitude - globeCenter.longitude) * rad;
-      return {
-        x: Math.cos(phi) * Math.sin(delta),
-        y: Math.cos(phi0) * Math.sin(phi) - Math.sin(phi0) * Math.cos(phi) * Math.cos(delta),
-        z: Math.sin(phi0) * Math.sin(phi) + Math.cos(phi0) * Math.cos(phi) * Math.cos(delta)
-      };
-    };
-    function clipPolygonAtHorizon(points) {
-      const output = [];
-      for (let index = 0; index < points.length; index++) {
-        const current = points[index];
-        const previous = points[(index + points.length - 1) % points.length];
-        const currentInside = current.z >= 0;
-        const previousInside = previous.z >= 0;
-        if (currentInside !== previousInside) {
-          const ratio = previous.z / (previous.z - current.z);
-          const point = {
-            x: previous.x + (current.x - previous.x) * ratio,
-            y: previous.y + (current.y - previous.y) * ratio,
-            z: 0
-          };
-          const length = Math.hypot(point.x, point.y) || 1;
-          output.push({x: point.x / length, y: point.y / length, z: 0});
-        }
-        if (currentInside) output.push(current);
-      }
-      return output;
-    }
-    function drawGlobe() {
-      const bounds = globeCanvas.getBoundingClientRect();
-      if (!bounds.width || !globeContext) return;
-      const dpr = window.devicePixelRatio || 1;
-      globeCanvas.width = Math.round(bounds.width * dpr);
-      globeCanvas.height = Math.round(bounds.width * dpr);
-      globeContext.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const ctx = globeContext;
-      const size = bounds.width;
-      const cx = size / 2, cy = size / 2, radius = size * .425;
-      ctx.clearRect(0, 0, size, size);
-      const ocean = ctx.createRadialGradient(cx - radius * .34, cy - radius * .42, radius * .05, cx, cy, radius * 1.2);
-      ocean.addColorStop(0, '#53c2d7'); ocean.addColorStop(.48, '#14759e'); ocean.addColorStop(1, '#071932');
-      ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.fillStyle = ocean; ctx.fill();
-      ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.clip();
-      const screen = point => ({x: cx + point.x * radius, y: cy - point.y * radius});
-      ctx.fillStyle = '#78ba83'; ctx.strokeStyle = '#c4e5a3'; ctx.lineWidth = 1.1;
-      for (const polygon of landPolygons) {
-        const clipped = clipPolygonAtHorizon(polygon.map(([longitude, latitude]) => toViewPoint(longitude, latitude)));
-        if (clipped.length < 3) continue;
-        ctx.beginPath();
-        clipped.forEach((point, index) => { const p = screen(point); index ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); });
-        ctx.closePath(); ctx.fill(); ctx.stroke();
-      }
-      const drawGridLine = points => {
-        ctx.beginPath(); let drawing = false;
-        for (const point of points) {
-          if (point.z < 0) { drawing = false; continue; }
-          const p = screen(point);
-          if (!drawing) { ctx.moveTo(p.x, p.y); drawing = true; } else ctx.lineTo(p.x, p.y);
-        }
-        ctx.stroke();
-      };
-      ctx.strokeStyle = '#d4f2ff45'; ctx.lineWidth = .8;
-      for (let latitude = -75; latitude <= 75; latitude += 25) {
-        const points = []; for (let longitude = -180; longitude <= 180; longitude += 4) points.push(toViewPoint(longitude, latitude));
-        drawGridLine(points);
-      }
-      for (let longitude = -180; longitude < 180; longitude += 30) {
-        const points = []; for (let latitude = -90; latitude <= 90; latitude += 3) points.push(toViewPoint(longitude, latitude));
-        drawGridLine(points);
-      }
-      const marker = toViewPoint(globePlace.longitude, globePlace.latitude);
-      if (marker.z >= 0) {
-        const p = screen(marker);
-        ctx.beginPath(); ctx.arc(p.x, p.y, 10, 0, Math.PI * 2); ctx.fillStyle = '#ffd76c55'; ctx.fill();
-        ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI * 2); ctx.fillStyle = '#ffe27a'; ctx.fill();
-        ctx.strokeStyle = '#fff6d3'; ctx.lineWidth = 1.5; ctx.stroke();
-      }
-      const shade = ctx.createRadialGradient(cx - radius * .35, cy - radius * .4, radius * .35, cx, cy, radius * 1.08);
-      shade.addColorStop(0, '#ffffff00'); shade.addColorStop(.75, '#00112d05'); shade.addColorStop(1, '#00112d99');
-      ctx.fillStyle = shade; ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.fill();
-      ctx.restore();
-      ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.strokeStyle = '#b6e6ff99'; ctx.lineWidth = 1.5; ctx.stroke();
-    }
-    let globeDrag = null;
-    globeCanvas.addEventListener('pointerdown', event => { globeDrag = {x:event.clientX,y:event.clientY}; globeCanvas.setPointerCapture(event.pointerId); });
-    globeCanvas.addEventListener('pointermove', event => {
-      if (!globeDrag) return;
-      const bounds = globeCanvas.getBoundingClientRect();
-      globeCenter.longitude -= (event.clientX - globeDrag.x) / bounds.width * 180;
-      globeCenter.latitude = Math.max(-82, Math.min(82, globeCenter.latitude + (event.clientY - globeDrag.y) / bounds.height * 150));
-      globeDrag = {x:event.clientX,y:event.clientY}; drawGlobe();
-    });
-    globeCanvas.addEventListener('pointerup', () => { globeDrag = null; });
-    globeCanvas.addEventListener('pointercancel', () => { globeDrag = null; });
-    window.addEventListener('resize', drawGlobe);
     function updateGlobe(place, current, description) {
-      globePlace = {latitude:place.latitude,longitude:place.longitude};
-      globeCenter = {latitude:place.latitude,longitude:place.longitude};
-      document.querySelector('#globe-location').textContent = [place.name, place.admin1, place.country].filter(Boolean).join(', ');
+      const region = [place.admin1, place.country].filter(Boolean).join(', ');
+      document.querySelector('#globe-location').textContent = [place.name, region].filter(Boolean).join(', ');
       document.querySelector('#globe-description').textContent = `${description} · ${Math.round(current.temperature_2m)}°C · ${current.time.replace('T',' ')}`;
       document.querySelector('#globe-coordinates').textContent = `${Number(place.latitude).toFixed(2)}°, ${Number(place.longitude).toFixed(2)}°`;
+      window.weatherScopePlace = {latitude:Number(place.latitude), longitude:Number(place.longitude), name:place.name};
+      window.dispatchEvent(new CustomEvent('weatherscope-place-change', {detail:window.weatherScopePlace}));
       visualizer.hidden = false;
-      requestAnimationFrame(drawGlobe);
     }
     const svgElement = (name, attributes, label) => {
       const element = document.createElementNS('http://www.w3.org/2000/svg', name);
@@ -541,6 +419,92 @@ int main()
       }
     });
     loadWeather({name:'Delhi', admin1:'Delhi', country:'India', latitude:28.576448, longitude:77.18678});
+  </script>
+  <script type="module">
+    try {
+      const THREE = await import('three');
+      const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+      const host = document.querySelector('#globe-container');
+      const loading = document.querySelector('#globe-loading');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 30);
+      camera.position.set(0, 0.12, 3.35);
+      const renderer = new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'high-performance'});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(host.clientWidth, host.clientHeight, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+      host.appendChild(renderer.domElement);
+
+      scene.add(new THREE.HemisphereLight(0xa9d5ff,0x10203b,1.7));
+      const keyLight = new THREE.DirectionalLight(0xfff1d7,3.1); keyLight.position.set(-3,2.4,4); scene.add(keyLight);
+      const fillLight = new THREE.DirectionalLight(0x4f9dff,1.1); fillLight.position.set(3,-1,-3); scene.add(fillLight);
+
+      const stars = [];
+      for(let i=0;i<900;i++){
+        const y=1-2*(i+.5)/900, radius=Math.sqrt(1-y*y), angle=i*2.399963;
+        stars.push(Math.cos(angle)*radius*8,y*8,Math.sin(angle)*radius*8);
+      }
+      const starGeometry = new THREE.BufferGeometry();
+      starGeometry.setAttribute('position',new THREE.Float32BufferAttribute(stars,3));
+      scene.add(new THREE.Points(starGeometry,new THREE.PointsMaterial({color:0xbfdcff,size:.018,sizeAttenuation:true,transparent:true,opacity:.8,depthWrite:false})));
+
+      const earthGroup = new THREE.Group(); scene.add(earthGroup);
+      const sphere = new THREE.SphereGeometry(1,96,64);
+      const textureLoader = new THREE.TextureLoader(); textureLoader.setCrossOrigin('anonymous');
+      const earthMaterial = new THREE.MeshPhongMaterial({color:0xffffff,specular:0x31506c,shininess:18});
+      const earth = new THREE.Mesh(sphere,earthMaterial); earthGroup.add(earth);
+      const earthTextureUrl = 'https://cdn.jsdelivr.net/npm/three@0.187.0/examples/textures/planets/earth_atmos_2048.jpg';
+      textureLoader.load(earthTextureUrl, texture=>{
+        texture.colorSpace=THREE.SRGBColorSpace; earthMaterial.map=texture; earthMaterial.needsUpdate=true;
+        if(loading)loading.remove();
+      },undefined,()=>{if(loading)loading.textContent='Earth imagery did not load. Check the internet connection and refresh.';});
+
+      const cloudsMaterial = new THREE.MeshLambertMaterial({transparent:true,opacity:.34,depthWrite:false});
+      const clouds = new THREE.Mesh(new THREE.SphereGeometry(1.009,72,48),cloudsMaterial); earthGroup.add(clouds);
+      textureLoader.load('https://cdn.jsdelivr.net/npm/three@0.187.0/examples/textures/planets/earth_clouds_1024.png',texture=>{
+        texture.colorSpace=THREE.SRGBColorSpace; cloudsMaterial.map=texture; cloudsMaterial.needsUpdate=true;
+      },undefined,()=>{});
+      const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(1.045,72,48),new THREE.MeshBasicMaterial({color:0x55aaff,transparent:true,opacity:.13,side:THREE.BackSide,depthWrite:false}));
+      earthGroup.add(atmosphere);
+
+      const marker = new THREE.Group(); earthGroup.add(marker);
+      const markerGold = new THREE.MeshBasicMaterial({color:0xffd878});
+      const glowMaterial = new THREE.MeshBasicMaterial({color:0xffc85b,transparent:true,opacity:.25,depthWrite:false});
+      const glow = new THREE.Mesh(new THREE.SphereGeometry(.044,16,12),glowMaterial); glow.position.y=.035; marker.add(glow);
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(.003,.004,.075,8),markerGold); stem.position.y=.043; marker.add(stem);
+      const pin = new THREE.Mesh(new THREE.SphereGeometry(.014,18,14),new THREE.MeshBasicMaterial({color:0xfff0ad})); pin.position.y=.087; marker.add(pin);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(.025,.0035,8,32),new THREE.MeshBasicMaterial({color:0xffe28a})); ring.rotation.x=Math.PI/2; ring.position.y=.023; marker.add(ring);
+
+      const controls = new OrbitControls(camera,renderer.domElement);
+      controls.enableDamping=true; controls.dampingFactor=.055; controls.enablePan=false;
+      controls.minDistance=2.35; controls.maxDistance=4.8; controls.autoRotate=true; controls.autoRotateSpeed=.28;
+      controls.target.set(0,0,0); controls.update();
+      function showPlace(place){
+        if(!place)return;
+        const latitude=Number(place.latitude)*Math.PI/180, longitude=Number(place.longitude)*Math.PI/180;
+        const normal=new THREE.Vector3(Math.cos(latitude)*Math.cos(longitude),Math.sin(latitude),-Math.cos(latitude)*Math.sin(longitude)).normalize();
+        marker.position.copy(normal.clone().multiplyScalar(1.004));
+        marker.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),normal);
+        earthGroup.quaternion.setFromUnitVectors(normal,new THREE.Vector3(0,0,1));
+        controls.reset(); controls.update();
+      }
+      window.addEventListener('weatherscope-place-change',event=>showPlace(event.detail));
+      showPlace(window.weatherScopePlace);
+
+      const resize = ()=>{
+        const width=host.clientWidth,height=host.clientHeight;
+        if(!width||!height)return;
+        renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();
+      };
+      new ResizeObserver(resize).observe(host);
+      function animate(){requestAnimationFrame(animate);controls.update();clouds.rotation.y+=.00012;renderer.render(scene,camera);}
+      animate();
+    } catch(error) {
+      const loading=document.querySelector('#globe-loading');
+      if(loading)loading.textContent='The 3D globe could not start in this browser. Refresh the page or use a browser with WebGL enabled.';
+    }
   </script>
 </body>
 </html>)HTML");
