@@ -43,6 +43,11 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Crow nlohmann_json)
 
 add_executable(weather_backend src/main.cpp)
+add_executable(weatherscope_desktop WIN32 src/desktop.cpp)
+set_target_properties(weatherscope_desktop PROPERTIES OUTPUT_NAME WeatherScope)
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/web")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/web/index.html"
+    "${CMAKE_CURRENT_BINARY_DIR}/web/index.html" COPYONLY)
 
 target_include_directories(weather_backend PRIVATE src)
 target_link_libraries(
@@ -54,5 +59,11 @@ target_link_libraries(
 
 if(WIN32)
     target_link_libraries(weather_backend PRIVATE ws2_32 mswsock winhttp)
+    target_link_libraries(weatherscope_desktop PRIVATE winhttp)
+endif()
+
+if(MINGW)
+    target_link_options(weather_backend PRIVATE -static -static-libgcc -static-libstdc++)
+    target_link_options(weatherscope_desktop PRIVATE -municode -static -static-libgcc -static-libstdc++)
 endif()
 
