@@ -250,6 +250,20 @@ int main()
     const placeResults = document.querySelector('#place-results');
     const visualizer = document.querySelector('#visualizer');
     const chartsCard = document.querySelector('#charts-card');
+    const conditions = code => {
+      if (code === 0) return ['Clear sky', '☀️'];
+      if (code === 1) return ['Mostly clear', '🌤️'];
+      if (code === 2) return ['Partly cloudy', '⛅'];
+      if (code === 3) return ['Overcast', '☁️'];
+      if (code === 45 || code === 48) return ['Foggy', '🌫️'];
+      if (code >= 51 && code <= 57) return ['Drizzle', '🌦️'];
+      if (code >= 61 && code <= 67) return ['Rain', '🌧️'];
+      if (code >= 71 && code <= 77) return ['Snow', '❄️'];
+      if (code >= 80 && code <= 82) return ['Rain showers', '🌦️'];
+      if (code >= 85 && code <= 86) return ['Snow showers', '🌨️'];
+      if (code >= 95) return ['Thunderstorm', '⛈️'];
+      return ['Current conditions', '🌡️'];
+    };
     let savedForecast = null;
     function updateGlobe(place, current, description) {
       const region = [place.admin1, place.country].filter(Boolean).join(', ');
@@ -455,7 +469,7 @@ int main()
       const textureLoader = new THREE.TextureLoader(); textureLoader.setCrossOrigin('anonymous');
       const earthMaterial = new THREE.MeshPhongMaterial({color:0xffffff,specular:0x31506c,shininess:18});
       const earth = new THREE.Mesh(sphere,earthMaterial); earthGroup.add(earth);
-      const earthTextureUrl = 'https://cdn.jsdelivr.net/npm/three@0.187.0/examples/textures/planets/earth_atmos_2048.jpg';
+      const earthTextureUrl = 'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg';
       textureLoader.load(earthTextureUrl, texture=>{
         texture.colorSpace=THREE.SRGBColorSpace; earthMaterial.map=texture; earthMaterial.needsUpdate=true;
         if(loading)loading.remove();
@@ -463,7 +477,7 @@ int main()
 
       const cloudsMaterial = new THREE.MeshLambertMaterial({transparent:true,opacity:.34,depthWrite:false});
       const clouds = new THREE.Mesh(new THREE.SphereGeometry(1.009,72,48),cloudsMaterial); earthGroup.add(clouds);
-      textureLoader.load('https://cdn.jsdelivr.net/npm/three@0.187.0/examples/textures/planets/earth_clouds_1024.png',texture=>{
+      textureLoader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png',texture=>{
         texture.colorSpace=THREE.SRGBColorSpace; cloudsMaterial.map=texture; cloudsMaterial.needsUpdate=true;
       },undefined,()=>{});
       const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(1.045,72,48),new THREE.MeshBasicMaterial({color:0x55aaff,transparent:true,opacity:.13,side:THREE.BackSide,depthWrite:false}));
