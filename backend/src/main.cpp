@@ -12,6 +12,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 namespace {
 
@@ -27,24 +28,21 @@ private:
     HINTERNET handle_;
 };
 
-std::string fetchCurrentWeather(double latitude, double longitude)
+std::wstring widenAscii(const std::string& text)
 {
-    std::ostringstream query;
-    query << std::fixed << std::setprecision(6)
-          << "/v1/forecast?latitude=" << latitude
-          << "&longitude=" << longitude
-          << "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m"
-          << "&timezone=auto";
-    const auto queryText = query.str();
-    const std::wstring path(queryText.begin(), queryText.end());
+    return std::wstring(text.begin(), text.end());
+}
 
+std::string fetchHttpsJson(const wchar_t* host, const std::string& pathText)
+{
+    const auto path = widenAscii(pathText);
     WinHttpHandle session(WinHttpOpen(L"WeatherScope/1.0",
         WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY, WINHTTP_NO_PROXY_NAME,
         WINHTTP_NO_PROXY_BYPASS, 0));
     if (!session.get()) throw std::runtime_error("Could not start the HTTPS client.");
     WinHttpSetTimeouts(session.get(), 5000, 5000, 10000, 10000);
 
-    WinHttpHandle connection(WinHttpConnect(session.get(), L"api.open-meteo.com",
+    WinHttpHandle connection(WinHttpConnect(session.get(), host,
         INTERNET_DEFAULT_HTTPS_PORT, 0));
     if (!connection.get()) throw std::runtime_error("Could not connect to the weather service.");
 
@@ -69,7 +67,11 @@ std::string fetchCurrentWeather(double latitude, double longitude)
 
     std::string body;
     DWORD available = 0;
-    while (WinHttpQueryDataAvailable(request.get(), &available) && available > 0) {
+    while (true) {
+        if (!WinHttpQueryDataAvailable(request.get(), &available)) {
+            throw std::runtime_error("Could not read the weather service response.");
+        }
+        if (available == 0) break;
         const auto oldSize = body.size();
         body.resize(oldSize + available);
         DWORD received = 0;
@@ -80,6 +82,58 @@ std::string fetchCurrentWeather(double latitude, double longitude)
     }
 
     return nlohmann::json::parse(body).dump();
+}
+
+std::string fetchCurrentWeather(double latitude, double longitude)
+{
+    std::ostringstream query;
+    query << std::fixed << std::setprecision(6)
+          << "/v1/forecast?latitude=" << latitude
+          << "&longitude=" << longitude
+          << "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m"
+          << "&timezone=auto";
+    return fetchHttpsJson(L"api.open-meteo.com", query.str());
+}
+
+std::string encodeQueryValue(const std::string& value)
+{
+    constexpr char hex[] = "0123456789ABCDEF";
+    std::string encoded;
+    for (const unsigned char byte : value) {
+        const bool unreserved = (byte >= 'a' && byte <= 'z') ||
+            (byte >= 'A' && byte <= 'Z') || (byte >= '0' && byte <= '9') ||
+            byte == '-' || byte == '_' || byte == '.' || byte == '~';
+        if (unreserved) {
+            encoded.push_back(static_cast<char>(byte));
+        } else {
+            encoded.push_back('%');
+            encoded.push_back(hex[byte >> 4]);
+            encoded.push_back(hex[byte & 0x0F]);
+        }
+    }
+    return encoded;
+}
+
+std::string searchLocations(const std::string& name)
+{
+    const auto body = fetchHttpsJson(L"geocoding-api.open-meteo.com",
+        "/v1/search?name=" + encodeQueryValue(name) + "&count=8&language=en");
+    const auto upstream = nlohmann::json::parse(body);
+    nlohmann::json results = nlohmann::json::array();
+    if (upstream.contains("results") && upstream["results"].is_array()) {
+        for (const auto& item : upstream["results"]) {
+            nlohmann::json place = {
+                {"name", item.value("name", "")},
+                {"latitude", item.value("latitude", 0.0)},
+                {"longitude", item.value("longitude", 0.0)},
+                {"country", item.value("country", "")},
+                {"admin1", item.value("admin1", "")},
+                {"timezone", item.value("timezone", "")}
+            };
+            results.push_back(std::move(place));
+        }
+    }
+    return nlohmann::json{{"results", results}}.dump();
 }
 
 bool parseCoordinate(const char* value, double min, double max, double& result)
@@ -120,6 +174,7 @@ int main()
     label{display:grid;gap:7px;color:#b8c4df;font-size:13px}input{width:100%;padding:12px 13px;border:1px solid #425273;border-radius:10px;background:#0c152b;color:white;font:inherit}
     button{border:0;border-radius:10px;background:#a9e2ff;color:#10213b;font:inherit;font-size:15px;font-weight:700;padding:13px 20px;cursor:pointer}button:hover{background:#c6edff}button:disabled{opacity:.6;cursor:wait}
     .hint{grid-column:1/-1;margin:0;color:#8998ba;font-size:12px}.status{min-height:24px;color:#b9c8e7;font-size:14px;margin:14px 2px}
+    .results{display:grid;gap:9px;margin:14px 0}.place-option{width:100%;text-align:left;border:1px solid #334365;background:#121d37;color:#eef3ff;padding:14px 16px}.place-option:hover{background:#1b2b4d;color:white}
     .weather{border:1px solid #334365;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#1c2c51,#101a32 72%);box-shadow:0 22px 70px #0005}
     .hero{padding:30px;display:flex;align-items:center;justify-content:space-between;gap:15px}.place{color:#b8c4df;font-size:14px}.temperature{font-size:clamp(60px,13vw,100px);font-weight:650;letter-spacing:-.07em;line-height:1;margin:10px 0}.condition{font-size:19px;color:#e4ecff}.weather-icon{font-size:72px;filter:drop-shadow(0 10px 18px #0004)}
     .details{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #334365}.detail{padding:20px 22px;border-right:1px solid #334365}.detail:last-child{border-right:0}.detail-name{font-size:12px;color:#9aabce}.detail-value{margin-top:8px;font-size:20px;font-weight:650}
@@ -133,11 +188,11 @@ int main()
     <h1>Weather, in focus.</h1>
     <p class="intro">A clear look at current conditions for any coordinates.</p>
     <form class="search" id="weather-form">
-      <label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" value="28.576448" required></label>
-      <label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" value="77.18678" required></label>
-      <button id="search-button" type="submit">Get weather</button>
-      <p class="hint">Delhi coordinates are filled in. Enter a different latitude and longitude to explore another place.</p>
+      <label style="grid-column:1/3">City or place<input id="city" type="search" value="Delhi" placeholder="Try London, Toronto, or Mumbai" minlength="2" required></label>
+      <button id="search-button" type="submit">Find place</button>
+      <p class="hint">Type a place name, then choose the matching city or region.</p>
     </form>
+    <div class="results" id="place-results" aria-label="Matching places" hidden></div>
     <p class="status" id="status" role="status" aria-live="polite">Loading current weather…</p>
     <section class="weather" id="weather-card" aria-label="Current weather" hidden>
       <div class="hero">
@@ -158,6 +213,7 @@ int main()
     const button = document.querySelector('#search-button');
     const status = document.querySelector('#status');
     const card = document.querySelector('#weather-card');
+    const placeResults = document.querySelector('#place-results');
     const conditions = code => {
       if (code === 0) return ['Clear sky', '☀️'];
       if (code === 1) return ['Mostly clear', '🌤️'];
@@ -172,20 +228,18 @@ int main()
       if (code >= 95) return ['Thunderstorm', '⛈️'];
       return ['Current conditions', '🌡️'];
     };
-    form.addEventListener('submit', async event => {
-      event.preventDefault();
+    async function loadWeather(place) {
       button.disabled = true;
-      status.textContent = 'Getting the latest weather…';
+      status.textContent = `Getting weather for ${place.name}…`;
       try {
-        const lat = document.querySelector('#latitude').value;
-        const lon = document.querySelector('#longitude').value;
-        const response = await fetch(`/weather?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lon)}`);
+        const response = await fetch(`/weather?latitude=${encodeURIComponent(place.latitude)}&longitude=${encodeURIComponent(place.longitude)}`);
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || 'Weather could not be loaded.');
         const current = data.current;
         const units = data.current_units;
         const [description, icon] = conditions(current.weather_code);
-        document.querySelector('#place').textContent = `${data.timezone.replaceAll('_', ' ')} · ${current.time.replace('T', ' ')}`;
+        const region = [place.admin1, place.country].filter(Boolean).join(', ');
+        document.querySelector('#place').textContent = `${place.name}${region ? `, ${region}` : ''} · ${current.time.replace('T', ' ')}`;
         document.querySelector('#temperature').textContent = Math.round(current.temperature_2m);
         document.querySelector('#condition').textContent = description;
         document.querySelector('#weather-icon').textContent = current.is_day ? icon : '🌙';
@@ -194,14 +248,47 @@ int main()
         document.querySelector('#wind').textContent = `${current.wind_speed_10m} ${units.wind_speed_10m}`;
         document.querySelector('#precipitation').textContent = `${current.precipitation} ${units.precipitation}`;
         card.hidden = false;
-        status.textContent = 'Weather updated.';
+        placeResults.hidden = true;
+        status.textContent = `Weather updated for ${place.name}.`;
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      button.disabled = true;
+      placeResults.replaceChildren();
+      placeResults.hidden = true;
+      status.textContent = 'Searching for places…';
+      try {
+        const city = document.querySelector('#city').value.trim();
+        const response = await fetch(`/geocode?name=${encodeURIComponent(city)}`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Place search failed.');
+        if (!data.results.length) {
+          status.textContent = 'No matching places found. Try another spelling or add a country.';
+          return;
+        }
+        for (const place of data.results) {
+          const option = document.createElement('button');
+          option.type = 'button';
+          option.className = 'place-option';
+          option.textContent = [place.name, place.admin1, place.country].filter(Boolean).join(', ');
+          option.addEventListener('click', () => loadWeather(place));
+          placeResults.append(option);
+        }
+        placeResults.hidden = false;
+        status.textContent = 'Choose the place you meant.';
       } catch (error) {
         status.textContent = error.message;
       } finally {
         button.disabled = false;
       }
     });
-    form.requestSubmit();
+    loadWeather({name:'Delhi', admin1:'Delhi', country:'India', latitude:28.576448, longitude:77.18678});
   </script>
 </body>
 </html>)HTML");
@@ -215,6 +302,30 @@ int main()
         nlohmann::json j;
         j["status"] = "ok";
         return crow::response{j.dump()};
+    });
+
+    // Turn a place name into selectable coordinates for the weather endpoint.
+    CROW_ROUTE(app, "/geocode")([](const crow::request& request) {
+        const char* name = request.url_params.get("name");
+        if (!name || std::string(name).size() < 2 || std::string(name).size() > 100) {
+            crow::response response(400, nlohmann::json{
+                {"error", "Enter a place name with at least 2 characters."}
+            }.dump());
+            response.set_header("Content-Type", "application/json; charset=utf-8");
+            return response;
+        }
+
+        try {
+            crow::response response(200, searchLocations(name));
+            response.set_header("Content-Type", "application/json; charset=utf-8");
+            return response;
+        } catch (const std::exception&) {
+            crow::response response(502, nlohmann::json{
+                {"error", "Could not search for places. Please try again."}
+            }.dump());
+            response.set_header("Content-Type", "application/json; charset=utf-8");
+            return response;
+        }
     });
 
     // Fetch current conditions for a coordinate pair from Open-Meteo.
