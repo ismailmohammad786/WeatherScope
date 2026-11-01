@@ -1,0 +1,13 @@
+# CMake build output and downloaded dependency sources
+/backend/build/
+/backend/cmake-build-*/
+/CMakeUserPresets.json
+
+# Compiled C/C++ output
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.exe
+
