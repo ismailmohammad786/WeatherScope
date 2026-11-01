@@ -1,0 +1,22 @@
+name: Backend build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Configure the C++ backend
+        run: cmake -S backend -B backend/build
+
+      - name: Build the C++ backend
+        run: cmake --build backend/build --parallel 2
+
