@@ -189,6 +189,7 @@ int main()
     .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart-card{padding:16px;border:1px solid #2b3b5c;border-radius:16px;background:#0f1930;min-width:0}.chart-card h3{font-size:15px;margin:0 0 10px}.chart-card svg{width:100%;height:auto;overflow:visible}.chart-grid-line{stroke:#34445f;stroke-width:1}.chart-axis-label{fill:#8ea0c3;font:11px Inter,Segoe UI,Arial,sans-serif}.chart-high{fill:none;stroke:#ffb86b;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-low{fill:none;stroke:#78c8ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.chart-high-dot{fill:#ffcf8c}.chart-low-dot{fill:#9cddff}.rain-bar{fill:#6bbce8;opacity:.85}.chart-legend{display:flex;gap:16px;color:#aab9df;font-size:12px;margin-top:6px}.legend-high::before,.legend-low::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#ffb86b}.legend-low::before{background:#78c8ff}
     .download-actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 2px}.download-actions button{background:#23385d;color:#e9f0ff;border:1px solid #40577f;padding:10px 14px}.download-actions button:hover{background:#2e4977}
     .hourly{margin-top:22px;padding:22px;border:1px solid #344a6c;border-radius:20px;background:linear-gradient(145deg,#13213a,#0e1729);box-shadow:0 20px 55px #0003}.hourly-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px}.hourly-head h2{font-size:20px;margin:0}.hourly-subtitle{margin-top:5px;color:#93a8ca;font-size:12px}.hourly-period{color:#a9c3e7;font-size:12px}.hourly-chart-card{padding:12px 14px 7px;border:1px solid #2b3b5c;border-radius:16px;background:#0c162a}.hourly-chart-card svg{display:block;width:100%;height:auto;overflow:visible}.hourly-temp-line{fill:none;stroke:#ffc77e;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px #ffb45b66)}.hourly-temp-area{fill:url(#hourly-temp-gradient)}.hourly-temp-dot{fill:#ffe0ad;stroke:#7f5831;stroke-width:2}.hourly-rain-bar{fill:#55bde9;opacity:.68}.hourly-grid-line{stroke:#30415e;stroke-width:1}.hourly-axis-label{fill:#8297ba;font:12px Inter,Segoe UI,Arial,sans-serif}.hourly-temp-label{fill:#f0c994;font:12px Inter,Segoe UI,Arial,sans-serif;font-weight:650}.hourly-legend{display:flex;gap:18px;align-items:center;margin:2px 4px 8px;color:#9fb2d0;font-size:11px}.hourly-legend span{display:flex;align-items:center;gap:7px}.hourly-legend i{display:inline-block;width:13px;height:3px;border-radius:4px;background:#ffc77e}.hourly-legend .rain-key{height:9px;width:9px;border-radius:3px;background:#55bde9}.hourly-strip{display:flex;gap:9px;overflow-x:auto;padding:12px 1px 6px;scrollbar-color:#426184 #101a2b;scrollbar-width:thin}.hourly-item{flex:0 0 76px;padding:12px 7px;text-align:center;border:1px solid #2b3b5c;border-radius:13px;background:linear-gradient(180deg,#152540,#0e192c)}.hourly-time{color:#aabbd6;font-size:11px}.hourly-icon{margin:8px 0;font-size:22px}.hourly-temp{font-size:16px;font-weight:700;color:#f4f7ff}.hourly-rain{margin-top:6px;color:#7dcaf0;font-size:10px;white-space:nowrap}
+    .compare{margin-top:22px;padding:23px;border:1px solid #344a6c;border-radius:22px;background:linear-gradient(140deg,#162744,#0d1729 76%);box-shadow:0 20px 55px #0003}.compare-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}.compare h2{margin:0;font-size:21px}.compare-copy{margin:6px 0 0;color:#96aacb;font-size:12px}.compare-count{flex:none;padding:7px 10px;border:1px solid #3a5476;border-radius:999px;color:#b8cbea;font-size:11px}.compare-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin:17px 0 5px}.compare-form input{min-width:0}.compare-results{display:grid;gap:8px;margin:8px 0}.compare-empty{padding:17px 4px;color:#879cbc;font-size:13px}.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:13px;margin-top:14px}.compare-city{min-width:0;padding:16px;border:1px solid #354a6a;border-radius:17px;background:linear-gradient(160deg,#182b48,#101a2e)}.compare-city-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.compare-city-name{font-size:16px;font-weight:700;color:#f1f5ff}.compare-city-region{margin-top:4px;color:#91a6c9;font-size:11px}.compare-remove{flex:none;padding:5px 9px;border:1px solid #405576;border-radius:999px;background:#14233c;color:#a9bddb;font-size:10px}.compare-remove:hover{background:#263e60;color:#fff}.compare-now{display:flex;align-items:center;gap:12px;padding:15px 0 12px;border-bottom:1px solid #2b3c58}.compare-weather-icon{font-size:36px;filter:drop-shadow(0 5px 9px #0005)}.compare-temp{font-size:30px;font-weight:700;letter-spacing:-.04em}.compare-condition{color:#a9bad6;font-size:11px;margin-top:2px}.compare-metrics{display:flex;gap:13px;flex-wrap:wrap;margin:10px 0 13px;color:#abc0df;font-size:11px}.compare-metrics strong{color:#f3f6fc;font-weight:650}.compare-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.compare-day{padding:8px 2px 7px;border-radius:10px;background:#0b1527;text-align:center}.compare-day-name{color:#8fa4c6;font-size:9px}.compare-day-icon{font-size:16px;margin:5px 0}.compare-day-temp{color:#edf3ff;font-size:9px;white-space:nowrap}.compare-day-rain{margin-top:4px;color:#80c8ec;font-size:8px;white-space:nowrap}.compare-score{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:11px;color:#9eb3d2;font-size:10px}.compare-score strong{color:#a7eee1;font-size:12px}.compare-loading{padding:20px 4px;color:#a4badb;font-size:12px}.compare-note{margin:11px 0 0;color:#798eae;font-size:10px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     @media(max-width:820px){.top-grid{grid-template-columns:1fr}.globe-wrap{height:min(86vw,450px)}.charts-grid{grid-template-columns:1fr}}
     footer{margin-top:16px;color:#7f90b4;font-size:12px;text-align:center} [hidden]{display:none!important}
     @media(max-width:600px){body{padding:24px 12px 45px}.search{grid-template-columns:1fr}.search button{grid-column:1}.hero{padding:23px}.details{grid-template-columns:1fr 1fr}.detail:nth-child(2){border-right:0}.detail:nth-child(-n+2){border-bottom:1px solid #334365}.globe-info{align-items:flex-start;flex-direction:column}.charts,.visualizer{padding:15px}}
@@ -252,6 +253,13 @@ int main()
       <h2>7-day forecast</h2>
       <div class="forecast-grid" id="forecast-days"></div>
     </section>
+    <section class="compare" id="compare-card" aria-label="Compare saved cities">
+      <div class="compare-head"><div><h2>Weather side by side</h2><p class="compare-copy">Save up to 3 places and compare their live conditions and week ahead.</p></div><span class="compare-count" id="compare-count">0 / 3 places</span></div>
+      <form class="compare-form" id="compare-form"><label class="sr-only" for="compare-city">Add a city to compare</label><input id="compare-city" type="search" minlength="2" placeholder="Add another city, e.g. Tokyo" required><button type="submit" id="compare-search-button">Find a place</button></form>
+      <div class="compare-results" id="compare-results" hidden></div>
+      <div class="compare-grid" id="compare-grid"></div>
+      <p class="compare-note">Weather comfort estimate uses forecast temperature, rain chance, and wind. Saved places stay in this browser.</p>
+    </section>
     <section class="charts" id="charts-card" aria-label="Seven day weather charts" hidden>
       <h2>7-day trends</h2>
       <div class="charts-grid">
@@ -271,6 +279,11 @@ int main()
     const forecastDays = document.querySelector('#forecast-days');
     const hourlyCard = document.querySelector('#hourly-card');
     const hourlyStrip = document.querySelector('#hourly-strip');
+    const compareGrid = document.querySelector('#compare-grid');
+    const compareResults = document.querySelector('#compare-results');
+    const compareCount = document.querySelector('#compare-count');
+    let comparePlaces=[];
+    const compareWeather=new Map();
     const placeResults = document.querySelector('#place-results');
     const visualizer = document.querySelector('#visualizer');
     const chartsCard = document.querySelector('#charts-card');
@@ -509,6 +522,62 @@ int main()
         }
       }
     }
+
+    const compareForm=document.querySelector('#compare-form');
+    const compareButton=document.querySelector('#compare-search-button');
+    function compareKey(place){return `${Number(place.latitude).toFixed(4)},${Number(place.longitude).toFixed(4)}`;}
+    function outdoorScore(daily,index){
+      const midpoint=(daily.temperature_2m_max[index]+daily.temperature_2m_min[index])/2;
+      const temperature=Math.max(0,100-Math.abs(midpoint-22)*3.2);
+      const rain=Math.max(0,100-(daily.precipitation_probability_max[index]??0)*.8);
+      const wind=Math.max(0,100-(daily.wind_speed_10m_max[index]??0)*1.2);
+      return Math.round(temperature*.5+rain*.35+wind*.15);
+    }
+    function renderComparePlaces(){
+      compareCount.textContent=`${comparePlaces.length} / 3 places`;
+      compareGrid.replaceChildren();
+      if(!comparePlaces.length){const empty=document.createElement('div');empty.className='compare-empty';empty.textContent='Add a place above to start your weather comparison.';compareGrid.append(empty);return;}
+      for(const place of comparePlaces){
+        const article=document.createElement('article');article.className='compare-city';
+        const head=document.createElement('div');head.className='compare-city-head';
+        const nameBlock=document.createElement('div');const name=document.createElement('div');name.className='compare-city-name';name.textContent=place.name;
+        const region=document.createElement('div');region.className='compare-city-region';region.textContent=[place.admin1,place.country].filter(Boolean).join(', ');nameBlock.append(name,region);
+        const remove=document.createElement('button');remove.type='button';remove.className='compare-remove';remove.textContent='Remove';remove.setAttribute('aria-label',`Remove ${place.name} from comparison`);
+        remove.addEventListener('click',()=>{comparePlaces=comparePlaces.filter(item=>compareKey(item)!==compareKey(place));compareWeather.delete(compareKey(place));try{localStorage.setItem('weatherscope.savedPlaces',JSON.stringify(comparePlaces));}catch{}renderComparePlaces();});
+        head.append(nameBlock,remove);article.append(head);
+        const saved=compareWeather.get(compareKey(place));
+        if(!saved){const loading=document.createElement('div');loading.className='compare-loading';loading.textContent='Loading this place’s forecast…';article.append(loading);compareGrid.append(article);continue;}
+        if(saved.error){const error=document.createElement('div');error.className='compare-loading';error.textContent='Could not load this forecast. Remove the place and try again.';article.append(error);compareGrid.append(article);continue;}
+        const {current,current_units:units,daily,daily_units:dailyUnits}=saved;
+        const [description,icon]=conditions(current.weather_code);
+        const now=document.createElement('div');now.className='compare-now';const symbol=document.createElement('div');symbol.className='compare-weather-icon';symbol.textContent=current.is_day?icon:'🌙';
+        const temperature=document.createElement('div');const degrees=document.createElement('div');degrees.className='compare-temp';degrees.textContent=`${Math.round(current.temperature_2m)}°`;const condition=document.createElement('div');condition.className='compare-condition';condition.textContent=description;temperature.append(degrees,condition);now.append(symbol,temperature);article.append(now);
+        const metrics=document.createElement('div');metrics.className='compare-metrics';
+        for(const [label,value] of [['Feels',`${Math.round(current.apparent_temperature)}${units.apparent_temperature}`],['Wind',`${current.wind_speed_10m} ${units.wind_speed_10m}`],['Humidity',`${current.relative_humidity_2m}${units.relative_humidity_2m}`]]){const item=document.createElement('span');item.textContent=`${label} `;const strong=document.createElement('strong');strong.textContent=value;item.append(strong);metrics.append(item);}article.append(metrics);
+        const week=document.createElement('div');week.className='compare-week';
+        daily.time.forEach((date,index)=>{const day=document.createElement('div');day.className='compare-day';const dayName=document.createElement('div');dayName.className='compare-day-name';dayName.textContent=new Date(`${date}T12:00:00`).toLocaleDateString(undefined,{weekday:'short'});const [dayDescription,dayIcon]=conditions(daily.weather_code[index]);const daySymbol=document.createElement('div');daySymbol.className='compare-day-icon';daySymbol.textContent=dayIcon;daySymbol.title=dayDescription;const range=document.createElement('div');range.className='compare-day-temp';range.textContent=`${Math.round(daily.temperature_2m_max[index])}°/${Math.round(daily.temperature_2m_min[index])}°`;range.title=`High / low in ${dailyUnits.temperature_2m_max}`;const rain=document.createElement('div');rain.className='compare-day-rain';rain.textContent=`☂ ${daily.precipitation_probability_max[index]??'—'}%`;day.append(dayName,daySymbol,range,rain);week.append(day);});article.append(week);
+        const bestIndex=daily.time.reduce((best,_date,index)=>outdoorScore(daily,index)>outdoorScore(daily,best)?index:best,0);
+        const score=document.createElement('div');score.className='compare-score';const scoreLabel=document.createElement('span');scoreLabel.textContent=`Best outdoor outlook · ${new Date(`${daily.time[bestIndex]}T12:00:00`).toLocaleDateString(undefined,{weekday:'long'})}`;const scoreValue=document.createElement('strong');scoreValue.textContent=`${outdoorScore(daily,bestIndex)} / 100`;score.append(scoreLabel,scoreValue);article.append(score);compareGrid.append(article);
+      }
+    }
+    async function fetchCompareWeather(place){
+      try{const response=await fetch(`/weather?latitude=${encodeURIComponent(place.latitude)}&longitude=${encodeURIComponent(place.longitude)}`);const data=await response.json();if(!response.ok)throw new Error();if(comparePlaces.some(item=>compareKey(item)===compareKey(place))){compareWeather.set(compareKey(place),data);renderComparePlaces();}}
+      catch{if(comparePlaces.some(item=>compareKey(item)===compareKey(place))){compareWeather.set(compareKey(place),{error:true});renderComparePlaces();}}
+    }
+    function addComparePlace(place){
+      if(comparePlaces.some(item=>compareKey(item)===compareKey(place))){compareResults.hidden=false;compareResults.textContent='That place is already saved.';return;}
+      if(comparePlaces.length>=3){compareResults.hidden=false;compareResults.textContent='You can compare up to 3 saved places. Remove one to add another.';return;}
+      const savedPlace={name:place.name,latitude:Number(place.latitude),longitude:Number(place.longitude),country:place.country||'',admin1:place.admin1||''};
+      comparePlaces.push(savedPlace);try{localStorage.setItem('weatherscope.savedPlaces',JSON.stringify(comparePlaces));}catch{}compareResults.hidden=true;document.querySelector('#compare-city').value='';compareWeather.delete(compareKey(savedPlace));renderComparePlaces();fetchCompareWeather(savedPlace);
+    }
+    compareForm.addEventListener('submit',async event=>{
+      event.preventDefault();compareButton.disabled=true;compareResults.replaceChildren();compareResults.hidden=false;
+      try{const city=document.querySelector('#compare-city').value.trim();const response=await fetch(`/geocode?name=${encodeURIComponent(city)}`);const data=await response.json();if(!response.ok)throw new Error(data.error||'Place search failed.');if(!data.results.length){compareResults.textContent='No matching places found. Try a different spelling.';return;}
+        for(const place of data.results){const option=document.createElement('button');option.type='button';option.className='place-option';option.textContent=[place.name,place.admin1,place.country].filter(Boolean).join(', ');option.addEventListener('click',()=>addComparePlace(place));compareResults.append(option);}
+      }catch(error){compareResults.textContent=error.message||'Could not search for that place.';}finally{compareButton.disabled=false;}
+    });
+    try{const stored=JSON.parse(localStorage.getItem('weatherscope.savedPlaces')||'[]');if(Array.isArray(stored))comparePlaces=stored.filter(place=>place&&Number.isFinite(Number(place.latitude))&&Number.isFinite(Number(place.longitude))).slice(0,3);}catch{comparePlaces=[];}
+    renderComparePlaces();comparePlaces.forEach(fetchCompareWeather);
 
     form.addEventListener('submit', async event => {
       event.preventDefault();
