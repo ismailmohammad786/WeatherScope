@@ -1,6 +1,6 @@
 # WeatherScope
 
-WeatherScope is a weather app for Windows. Its desktop launcher opens a clean app window, starts the local C++ service in the background, and stops that service when the app window closes. Microsoft Edge supplies the window’s web display engine.
+WeatherScope is a weather app for Windows and mobile devices. It can run as a Windows desktop app or be installed from its website on Windows, Android, and iPhone. The Windows launcher opens a clean app window, starts the local C++ service in the background, and stops that service when the app window closes. Microsoft Edge supplies the Windows app’s web display engine.
 
 ## What you can do
 
@@ -20,18 +20,30 @@ WeatherScope is a weather app for Windows. Its desktop launcher opens a clean ap
 ## How the app works
 
 1. `WeatherScope.exe` checks whether the local weather service is already running. If needed, it starts `weather_backend.exe` without opening a terminal window.
-2. The backend serves the WeatherScope page from `backend/web/index.html` and provides local weather and place-search endpoints.
+2. The backend serves the page, stylesheet, install manifest, service worker, and app icons from `backend/web/`, and provides local weather and place-search endpoints.
 3. The launcher opens that page in a separate Microsoft Edge app window. It uses a dedicated Edge profile so saved comparison cities stay with WeatherScope.
-4. The backend requests weather and place-search data from Open-Meteo. The page requests city photos from Wikimedia Commons and loads Three.js and Earth imagery from their public sources.
+4. The Windows app requests weather and place-search data through the local C++ service. The website version requests the same data directly from Open-Meteo, so it does not need a separate hosted C++ server. The page requests city photos from Wikimedia Commons and loads Three.js and Earth imagery from their public sources.
 5. When you close the WeatherScope window, the launcher stops the backend if it started it. A backend that was already running is left alone.
 
-WeatherScope needs internet access for live forecasts, city search, the detailed Earth texture, and city photos. City comparisons are stored in the app’s local Edge profile; they are not uploaded to a WeatherScope account.
+WeatherScope needs internet access for live forecasts, city search, the detailed Earth texture, and city photos. The installable website caches its app shell and previously loaded forecast responses for offline opening. City comparisons are stored in the browser profile; they are not uploaded to a WeatherScope account.
+
+## Install WeatherScope from the website
+
+The website is published at [https://ismailmohammad786.github.io/WeatherScope/](https://ismailmohammad786.github.io/WeatherScope/) after GitHub Pages is enabled for this repository. Open that address in a supported browser and choose **Install app** in WeatherScope or use the browser’s install menu.
+
+- **Windows:** Open the site in Microsoft Edge or Chrome and choose **Install app**.
+- **Android:** Open the site in Chrome and choose **Install app** or **Add to Home screen**.
+- **iPhone:** Open the site in Safari, tap **Share**, then choose **Add to Home Screen**.
+
+The website install does not require CMake, a C++ compiler, or the Windows launcher. It needs internet access for new forecasts, city search, photos, and Earth imagery. To publish website changes, the GitHub Actions workflow deploys `backend/web/` to GitHub Pages when those files change on `main`.
 
 ## Project files
 
 ```text
 WeatherScope/
-├── .github/workflows/backend.yml    Build check run on GitHub
+├── .github/workflows/
+│   ├── backend.yml                  Build check run on GitHub
+│   └── deploy-pages.yml             Publishes the installable website
 ├── backend/
 │   ├── CMakeLists.txt               C++ build configuration
 │   ├── src/
@@ -39,9 +51,14 @@ WeatherScope/
 │   │   ├── main.cpp                 C++ weather service and API routes
 │   │   └── crow_all.h               Crow HTTP server header
 │   └── web/
-│       └── index.html               WeatherScope interface and browser logic
+│       ├── icons/                    Windows and mobile app icons
+│       ├── index.html               Page structure and browser logic
+│       ├── manifest.webmanifest     Install name, icons, and app display mode
+│       ├── service-worker.js        Offline app shell and forecast cache
+│       └── style.css                Page layout, colors, and visual effects
 ├── scripts/
 │   ├── build-desktop.ps1            Builds the app and portable package
+│   ├── generate-pwa-icons.ps1        Recreates the mobile and website icons
 │   ├── install-windows.ps1          Adds Start menu and Desktop shortcuts
 │   └── uninstall-windows.ps1        Removes the app and its shortcuts
 ├── .gitignore                      Excludes build and package outputs
@@ -112,6 +129,8 @@ Open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in a browser. Stop the ser
 - Forecasts and place search: [Open-Meteo](https://open-meteo.com/).
 - 3D rendering and Earth imagery: [Three.js](https://threejs.org/).
 - City photos and available creator/license details: [Wikimedia Commons](https://commons.wikimedia.org/). Photo cards link to the original file pages.
+
+The public Open-Meteo endpoint is used without an API key for non-commercial use and requires attribution. Review [Open-Meteo’s terms](https://open-meteo.com/en/terms) before using WeatherScope commercially or at higher traffic levels.
 
 ## Troubleshooting
 

@@ -48,6 +48,14 @@ set_target_properties(weatherscope_desktop PROPERTIES OUTPUT_NAME WeatherScope)
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/web")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/web/index.html"
     "${CMAKE_CURRENT_BINARY_DIR}/web/index.html" COPYONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/web/style.css"
+    "${CMAKE_CURRENT_BINARY_DIR}/web/style.css" COPYONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/web/manifest.webmanifest"
+    "${CMAKE_CURRENT_BINARY_DIR}/web/manifest.webmanifest" COPYONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/web/service-worker.js"
+    "${CMAKE_CURRENT_BINARY_DIR}/web/service-worker.js" COPYONLY)
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/web/icons"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/web")
 
 target_include_directories(weather_backend PRIVATE src)
 target_link_libraries(

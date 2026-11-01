@@ -167,6 +167,25 @@ std::filesystem::path executableDirectory()
     return std::filesystem::path(std::wstring(path.data(), length)).parent_path();
 }
 
+crow::response serveWebAsset(const std::filesystem::path& relativePath,
+                             const std::string& contentType)
+{
+    const auto assetPath = executableDirectory() / L"web" / relativePath;
+    std::ifstream assetFile(assetPath, std::ios::binary);
+    if (!assetFile) {
+        crow::response response(404, "WeatherScope could not find this web asset.");
+        response.set_header("Content-Type", "text/plain; charset=utf-8");
+        return response;
+    }
+
+    const std::string contents{
+        std::istreambuf_iterator<char>(assetFile),
+        std::istreambuf_iterator<char>()};
+    crow::response response(contents);
+    response.set_header("Content-Type", contentType);
+    return response;
+}
+
 } // namespace
 
 int main()
@@ -176,17 +195,26 @@ int main()
 
     // Serve the web interface packaged beside the backend executable.
     CROW_ROUTE(app, "/")([] {
-        const auto pagePath = executableDirectory() / L"web" / L"index.html";
-        std::ifstream pageFile(pagePath, std::ios::binary);
-        if (!pageFile) {
-            crow::response response(500, "WeatherScope could not load its web page.");
+        return serveWebAsset(L"index.html", "text/html; charset=utf-8");
+    });
+    CROW_ROUTE(app, "/style.css")([] {
+        return serveWebAsset(L"style.css", "text/css; charset=utf-8");
+    });
+    CROW_ROUTE(app, "/manifest.webmanifest")([] {
+        return serveWebAsset(L"manifest.webmanifest", "application/manifest+json");
+    });
+    CROW_ROUTE(app, "/service-worker.js")([] {
+        return serveWebAsset(L"service-worker.js", "text/javascript; charset=utf-8");
+    });
+    CROW_ROUTE(app, "/icons/<string>")([](const std::string& filename) {
+        if (filename != "icon-180.png" && filename != "icon-192.png" &&
+            filename != "icon-512.png") {
+            crow::response response(404, "WeatherScope could not find this app icon.");
             response.set_header("Content-Type", "text/plain; charset=utf-8");
             return response;
         }
-        const std::string page((std::istreambuf_iterator<char>(pageFile)), std::istreambuf_iterator<char>());
-        crow::response response(page);
-        response.set_header("Content-Type", "text/html; charset=utf-8");
-        return response;
+        return serveWebAsset(std::filesystem::path(L"icons") / filename,
+                             "image/png");
     });
     // Health‑check endpoint returns a JSON object
     CROW_ROUTE(app, "/health")
