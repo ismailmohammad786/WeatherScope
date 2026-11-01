@@ -170,6 +170,7 @@ int main()
   <style>
     :root{color-scheme:dark;font-family:Inter,Segoe UI,Arial,sans-serif;background:#070d1a;color:#f5f8ff}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 78% -12%,#42639266 0,transparent 42%),radial-gradient(ellipse at 8% 15%,#18355880 0,transparent 34%),#070d1a;padding:32px 20px 60px}
+    body.booting{overflow:hidden}.launch-screen{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 43%,#183d61 0,#0b1b30 38%,#050a14 78%);color:#f4f8ff;transition:opacity .85s ease,visibility .85s ease}.launch-screen.is-hidden{opacity:0;visibility:hidden;pointer-events:none}.launch-stars,.launch-stars::before,.launch-stars::after{position:absolute;inset:-20%;content:"";background-image:radial-gradient(1px 1px at 12% 24%,#d8ecffb0 99%,transparent),radial-gradient(1px 1px at 78% 16%,#b8daff9c 99%,transparent),radial-gradient(1px 1px at 43% 68%,#fff9 99%,transparent),radial-gradient(1px 1px at 89% 73%,#b8daff9c 99%,transparent),radial-gradient(1px 1px at 26% 88%,#fff8 99%,transparent);background-size:340px 280px;animation:star-drift 34s linear infinite}.launch-stars::before{transform:translate(130px,50px) scale(1.3);opacity:.55}.launch-stars::after{transform:translate(-90px,100px) scale(.8);opacity:.5}@keyframes star-drift{to{transform:translateY(90px)}}.launch-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:min(92vw,650px);text-align:center;padding:30px 20px}.launch-brand{font-size:12px;font-weight:750;letter-spacing:.28em;text-transform:uppercase;color:#c4d9f7}.launch-brand span{color:#76e2dc}.launch-orbit{position:relative;width:min(57vw,310px);height:min(57vw,310px);margin:40px auto 23px;display:grid;place-items:center;perspective:800px}.launch-earth{position:relative;width:72%;aspect-ratio:1;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 31% 25%,#9ce4ff 0,#328dc6 22%,#14507f 53%,#07182e 78%);box-shadow:inset -26px -10px 38px #020b1bea,inset 8px 5px 24px #b4edff77,0 0 30px #50c8ff80,0 0 100px #2584e566;animation:earth-turn 18s linear infinite}.launch-earth::before{position:absolute;inset:-10%;content:"";background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cg fill='%2391d59b' fill-opacity='.92'%3E%3Cpath d='M42 42l19-14 24 3 13 13-8 13 12 12-8 18-19 2-8 18-16-5-8-21-13-8 3-19-10-11zM103 103l17 5 12 17-2 26-13 23-12-16-1-22-10-15zM169 42l20-12 19 9 18-4 14 12-7 14 17 12-5 14-16 7-2 18-15 5-13-13-13 6-8-14-18-4-9-17 10-13-9-11zM218 111l22-9 22 9 9 16-13 12-5 22-17 9-16-14-4-23-13-10zM274 48l18-9 14 8 14-3 13 12-6 14 11 12-9 14-22-3-11-12-17 4-10-17z'/%3E%3C/g%3E%3C/svg%3E");background-size:200% 100%;filter:drop-shadow(0 0 3px #b5f1ad77);animation:land-turn 24s linear infinite}.launch-earth::after{position:absolute;inset:0;content:"";border-radius:50%;background:linear-gradient(112deg,transparent 35%,#8addff26 51%,transparent 68%),radial-gradient(ellipse at 22% 29%,#ffffff26,transparent 44%);mix-blend-mode:screen}@keyframes earth-turn{to{transform:rotate(360deg)}}@keyframes land-turn{to{background-position:200% 0}}.launch-atmosphere{position:absolute;inset:8%;border:1px solid #83dfff70;border-radius:50%;box-shadow:0 0 28px #52caff36,inset 0 0 24px #52caff2b}.launch-orbit-ring{position:absolute;inset:17% -9%;border:1px solid #9bdcff70;border-radius:50%;transform:rotateX(68deg) rotateZ(-24deg);box-shadow:0 0 16px #52bfff24;animation:ring-turn 12s linear infinite}.launch-orbit-ring::after{position:absolute;left:15%;top:13%;width:8px;height:8px;content:"";border-radius:50%;background:#d7f6ff;box-shadow:0 0 14px 5px #68d8ff}.launch-orbit-ring.ring-two{inset:22% -4%;transform:rotateX(72deg) rotateZ(52deg);border-color:#e5c88755;animation-direction:reverse}.launch-orbit-ring.ring-two::after{left:78%;top:22%;width:5px;height:5px;background:#ffe0a2;box-shadow:0 0 12px 4px #ffc86b}@keyframes ring-turn{to{rotate:360deg}}.launch-kicker{color:#70dcd5;font-size:10px;font-weight:750;letter-spacing:.22em;text-transform:uppercase}.launch-content h2{margin:12px 0 8px;font-size:clamp(27px,5vw,45px);font-weight:650;letter-spacing:-.045em}.launch-copy{margin:0;color:#9eb5d4;font-size:14px}.launch-progress{display:flex;align-items:center;gap:13px;width:min(100%,330px);margin-top:29px;text-align:left}.launch-progress-track{height:3px;flex:1;overflow:hidden;border-radius:9px;background:#243b57}.launch-progress-fill{height:100%;width:8%;border-radius:inherit;background:linear-gradient(90deg,#68d5d4,#a2e3ff);box-shadow:0 0 12px #6bdbe0;transition:width .55s ease}.launch-progress-value{width:36px;color:#c8dbf2;font-size:11px;font-variant-numeric:tabular-nums}.launch-stage{min-height:18px;margin:10px 0 0;color:#7892b7;font-size:11px;letter-spacing:.04em}.launch-skip{position:absolute;z-index:2;right:24px;bottom:22px;padding:9px 12px;border:1px solid #466283;border-radius:999px;background:#10243bb0;color:#bcd0ea;font-size:11px}.launch-skip:hover{background:#1d3959;color:#fff}@media(prefers-reduced-motion:reduce){.launch-stars,.launch-earth,.launch-earth::before,.launch-orbit-ring{animation-duration:60s}.launch-screen{transition-duration:.15s}}
     main{max-width:1160px;margin:0 auto}.brand-row{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#c0d2f4;font-weight:750}.brand-pill{margin-left:9px;padding:4px 8px;border:1px solid #40678c;border-radius:999px;color:#7de2da;font-size:9px;letter-spacing:.14em;vertical-align:2px}.source-label{font-size:12px;color:#8fa5c8}
     h1{font-size:clamp(36px,6vw,64px);margin:16px 0 7px;letter-spacing:-.055em;line-height:1.02}.intro{margin:0;color:#aebed9;font-size:16px}
     .search{margin:25px 0 16px;padding:15px 17px;border:1px solid #334c6b;border-radius:17px;background:linear-gradient(120deg,#111e34eF,#10192dee);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;box-shadow:0 15px 42px #0003}
@@ -194,6 +195,19 @@ int main()
   </script>
 </head>
 <body>
+  <section class="launch-screen" id="launch-screen" aria-label="WeatherScope is loading" aria-live="polite">
+    <div class="launch-stars" aria-hidden="true"></div>
+    <div class="launch-content">
+      <div class="launch-brand">Weather<span>Scope</span> &nbsp; / &nbsp; PLANETARY WEATHER</div>
+      <div class="launch-orbit" aria-hidden="true"><div class="launch-atmosphere"></div><div class="launch-earth"></div><div class="launch-orbit-ring"></div><div class="launch-orbit-ring ring-two"></div></div>
+      <div class="launch-kicker">Your world, in motion</div>
+      <h2>Mapping the atmosphere.</h2>
+      <p class="launch-copy">Bringing your location and the next seven days into view.</p>
+      <div class="launch-progress"><div class="launch-progress-track"><div class="launch-progress-fill" id="launch-progress-fill"></div></div><span class="launch-progress-value" id="launch-progress-value">08%</span></div>
+      <p class="launch-stage" id="launch-stage">Synchronizing live conditions…</p>
+    </div>
+    <button class="launch-skip" id="launch-skip" type="button">Skip intro</button>
+  </section>
   <main>
     <div class="brand-row"><div class="brand">WeatherScope<span class="brand-pill">LIVE</span></div><div class="source-label">Live weather · Global view</div></div>
     <h1>See weather from every angle.</h1>
@@ -250,6 +264,51 @@ int main()
     const placeResults = document.querySelector('#place-results');
     const visualizer = document.querySelector('#visualizer');
     const chartsCard = document.querySelector('#charts-card');
+    const launchScreen = document.querySelector('#launch-screen');
+    const launchFill = document.querySelector('#launch-progress-fill');
+    const launchValue = document.querySelector('#launch-progress-value');
+    const launchStage = document.querySelector('#launch-stage');
+    document.body.classList.add('booting');
+    let launchWeatherReady = false;
+    let launchGlobeReady = false;
+    let launchFinished = false;
+    function setLaunchProgress(value, stage) {
+      launchFill.style.width = `${value}%`;
+      launchValue.textContent = `${String(value).padStart(2,'0')}%`;
+      launchStage.textContent = stage;
+    }
+    function finishLaunch() {
+      if (launchFinished || !launchWeatherReady || !launchGlobeReady) return;
+      launchFinished = true;
+      setLaunchProgress(100, 'Your forecast is ready.');
+      setTimeout(() => {
+        launchScreen.classList.add('is-hidden');
+        document.body.classList.remove('booting');
+      }, 520);
+    }
+    function markLaunchGlobeReady() {
+      launchGlobeReady = true;
+      setLaunchProgress(launchWeatherReady ? 92 : 68, launchWeatherReady ? 'Finishing the 3D Earth…' : 'Rendering your 3D Earth…');
+      finishLaunch();
+    }
+    window.addEventListener('weatherscope-globe-ready', markLaunchGlobeReady, {once:true});
+    window.addEventListener('weatherscope-weather-ready', () => {
+      launchWeatherReady = true;
+      setLaunchProgress(launchGlobeReady ? 92 : 48, launchGlobeReady ? 'Finishing the 3D Earth…' : 'Forecast received · preparing the globe…');
+      finishLaunch();
+    }, {once:true});
+    document.querySelector('#launch-skip').addEventListener('click', () => {
+      launchFinished = true;
+      launchScreen.classList.add('is-hidden');
+      document.body.classList.remove('booting');
+    });
+    window.setTimeout(() => {
+      if (launchFinished) return;
+      launchStage.textContent = 'Opening your dashboard…';
+      launchScreen.classList.add('is-hidden');
+      document.body.classList.remove('booting');
+      launchFinished = true;
+    }, 15000);
     const conditions = code => {
       if (code === 0) return ['Clear sky', '☀️'];
       if (code === 1) return ['Mostly clear', '🌤️'];
@@ -398,6 +457,15 @@ int main()
         status.textContent = error.message;
       } finally {
         button.disabled = false;
+        if (!window.weatherScopeInitialReady) {
+          window.weatherScopeInitialReady = true;
+          if (!launchWeatherReady) {
+            launchWeatherReady = true;
+            setLaunchProgress(launchGlobeReady ? 92 : 48, launchGlobeReady ? 'Finishing the 3D Earth…' : 'Forecast received · preparing the globe…');
+            finishLaunch();
+          }
+          window.dispatchEvent(new Event('weatherscope-weather-ready'));
+        }
       }
     }
 
@@ -473,7 +541,8 @@ int main()
       textureLoader.load(earthTextureUrl, texture=>{
         texture.colorSpace=THREE.SRGBColorSpace; earthMaterial.map=texture; earthMaterial.needsUpdate=true;
         if(loading)loading.remove();
-      },undefined,()=>{if(loading)loading.textContent='Earth imagery did not load. Check the internet connection and refresh.';});
+        window.dispatchEvent(new Event('weatherscope-globe-ready'));
+      },undefined,()=>{if(loading)loading.textContent='Earth imagery did not load. Check the internet connection and refresh.';window.dispatchEvent(new Event('weatherscope-globe-ready'));});
 
       const cloudsMaterial = new THREE.MeshLambertMaterial({transparent:true,opacity:.34,depthWrite:false});
       const clouds = new THREE.Mesh(new THREE.SphereGeometry(1.009,72,48),cloudsMaterial); earthGroup.add(clouds);
@@ -518,6 +587,7 @@ int main()
     } catch(error) {
       const loading=document.querySelector('#globe-loading');
       if(loading)loading.textContent='The 3D globe could not start in this browser. Refresh the page or use a browser with WebGL enabled.';
+      window.dispatchEvent(new Event('weatherscope-globe-ready'));
     }
   </script>
 </body>
